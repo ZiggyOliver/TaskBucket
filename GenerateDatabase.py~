@@ -1,0 +1,7 @@
+import sqlite3
+
+def GenerateDatabase():
+    connection = sqlite3.connect("TaskBucket_Data.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+    CREATE TABLE Tasks
