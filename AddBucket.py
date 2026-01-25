@@ -16,6 +16,6 @@ def AddBucketToDB(bucketToAdd):
 
     cursor.execute(f"""
     INSERT INTO Buckets (bucketType, startTime, finishTime)
-    VALUES ({bucketToAdd.bucketType}, {bucketToAdd.startTime}, {bucketToAdd.finishTime})
+    VALUES ("{bucketToAdd.bucketType}", {bucketToAdd.startTime}, {bucketToAdd.finishTime})
     """)
     connection.commit()
