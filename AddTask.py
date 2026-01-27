@@ -27,3 +27,4 @@ def AddTaskToDB(taskToAdd):
     cursor.execute(operationString)
     print(operationString)
     connection.commit()
+#comment
