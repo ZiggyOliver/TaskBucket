@@ -34,5 +34,4 @@ def GenerateDatabase():
     sessionTimeEnd INTEGER)
     """)
 
-    
-]
+
