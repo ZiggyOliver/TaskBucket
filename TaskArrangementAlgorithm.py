@@ -10,7 +10,7 @@ import AddTaskBucket
 connection = sqlite3.connect("TaskBucket_Data.db")
 cursor = connection.cursor()
 
-def TaskArrangementAlgorithm(taskToPlace):
+def ArrangeTask(taskToPlace):
     shutil.copyfile("TaskBucket_Data.db","TaskBucket_Data_copy.db")
 
     #finding next buckets
@@ -24,7 +24,10 @@ def TaskArrangementAlgorithm(taskToPlace):
     bucketsAfterCurrentTime = []
 
     for fetchedBucket in cursor.fetchall():
-        createdBucket = AddBucket.Bucket(fetchedBucket[0],fetchedBucket[1],fetchedBucket[2])
+        print(fetchedBucket[0], fetchedBucket[1], fetchedBucket[2], fetchedBucket[3])
+        createdBucket = AddBucket.Bucket(
+            fetchedBucket[0],fetchedBucket[1],fetchedBucket[2], fetchedBucket[3]
+        )
         bucketsAfterCurrentTime.append(createdBucket)
 
     for bucket in bucketsAfterCurrentTime:
@@ -34,13 +37,15 @@ def TaskArrangementAlgorithm(taskToPlace):
             requiredSpace = taskToPlace.estimatedTime
 
         #finding space in current bucket
+        print("bucketID: " + str(bucket.bucketID))
         cursor.execute(f"""
             SELECT sessionTimeEnd
             FROM TaskBuckets
-            WHERE bucketID = {bucket.bucketID}
+            WHERE bucketID == {bucket.bucketID}
             ORDER BY sessionTimeEnd
         """)
         newSessionStart = cursor.fetchone()
+        if newSessionStart == None: newSessionStart = bucket.startTime
         newSessionEnd = newSessionStart + taskToPlace.estimatedTime
         newTaskBucket = AddTaskBucket.TaskBucket(
             taskToPlace.taskID, bucket.bucketID, newSessionStart, newSessionEnd)

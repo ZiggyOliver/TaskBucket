@@ -24,7 +24,7 @@ def AddTaskToDB(taskToAdd):
     operationString = f"""
     INSERT INTO Tasks (name, compatibleBucketType, deadline, description, estimatedTime)
     VALUES ("{taskToAdd.taskName}", "{taskToAdd.compatibleBucketType}", {taskToAdd.deadline}, "{taskToAdd.description}", {taskToAdd.estimatedTime})
-    """
+    ""
 
     cursor.execute(operationString)
     print(operationString)

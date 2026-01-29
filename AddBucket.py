@@ -6,7 +6,8 @@ class Bucket:
     startTime = float("nan")
     finishTime = float("nan")
 
-    def __init__(self,bucketID bucketType, startTime, finishTime):
+    def __init__(self,bucketID, bucketType, startTime, finishTime):
+        self.bucketID = bucketID
         self.bucketType = bucketType
         self.startTime = startTime
         self.finishTime = finishTime

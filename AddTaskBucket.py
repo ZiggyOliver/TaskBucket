@@ -19,6 +19,6 @@ def AddTaskBucketToDB(taskBucket):
 
     cursor.execute(f"""
     INSERT INTO TaskBuckets (taskID, bucketID, sessionTimeStart, SessionTimeEnd)
-    VALUES ({taskBucket.task}, {taskBucket.bucket}, {taskBucket.sessionTimeStart}, {taskBucket.sessionTimeEnd})
+    VALUES ("{taskBucket.task}", {taskBucket.bucket}, {taskBucket.sessionTimeStart}, {taskBucket.sessionTimeEnd})
     """)
     connection.commit()
