@@ -7,12 +7,14 @@ class Task:
     compatibleBucketType = ""
     deadline = float("nan")
     estimatedTime = float("nan")
+    maximumSessionTime = float("nan")
 
-    def __init__(self, compatibleBucketType, deadline, estimatedTime, description):
+    def __init__(self, compatibleBucketType, deadline, estimatedTime, description, maximumSessionTime):
         self.compatibleBucketType = compatibleBucketType
         self.deadline = deadline
         self.estimatedTime = estimatedTime
         self.description = description
+        self.maximumSessionTime = maximumSessionTime
         
 
 def AddTaskToDB(taskToAdd):
@@ -27,4 +29,4 @@ def AddTaskToDB(taskToAdd):
     cursor.execute(operationString)
     print(operationString)
     connection.commit()
-#comment
+

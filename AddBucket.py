@@ -1,11 +1,12 @@
 import sqlite3
 
 class Bucket:
+    bucketID = float("nan")
     bucketType = ""
     startTime = float("nan")
     finishTime = float("nan")
 
-    def __init__(self, bucketType, startTime, finishTime):
+    def __init__(self,bucketID bucketType, startTime, finishTime):
         self.bucketType = bucketType
         self.startTime = startTime
         self.finishTime = finishTime

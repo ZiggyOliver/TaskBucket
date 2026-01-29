@@ -5,6 +5,7 @@ import sqlite3
 import epoch
 import os
 import AddBucket
+import AddTaskBucket
 
 connection = sqlite3.connect("TaskBucket_Data.db")
 cursor = connection.cursor()
@@ -14,7 +15,7 @@ def TaskArrangementAlgorithm(taskToPlace):
 
     #finding next buckets
     cursor.execute(f"""
-        SELECT bucketType, startTime, finishTime
+        SELECT bucketID, bucketType, startTime, finishTime
         FROM Buckets
         WHERE startTime BETWEEN {epoch.now()} AND {taskToPlace.deadline}
         ORDER BY startTime ASC
@@ -27,6 +28,23 @@ def TaskArrangementAlgorithm(taskToPlace):
         bucketsAfterCurrentTime.append(createdBucket)
 
     for bucket in bucketsAfterCurrentTime:
-        if taskToPlace.currentTime 
-    os.remove("TaskBucket_Data_copy.db")
+        if taskToPlace.estimatedTime > taskToPlace.maximumSessionTime:
+            requiredSpace = taskToPlace.maximumSessionTime
+        else:
+            requiredSpace = taskToPlace.estimatedTime
 
+        #finding space in current bucket
+        cursor.execute(f"""
+            SELECT sessionTimeEnd
+            FROM TaskBuckets
+            WHERE bucketID = {bucket.bucketID}
+            ORDER BY sessionTimeEnd
+        """)
+        newSessionStart = cursor.fetchone()
+        newSessionEnd = newSessionStart + taskToPlace.estimatedTime
+        newTaskBucket = AddTaskBucket.TaskBucket(
+            taskToPlace.taskID, bucket.bucketID, newSessionStart, newSessionEnd)
+        AddTaskBucket.AddTaskBucketToDB(newTaskBucket)
+        
+        
+    os.remove("TaskBucket_Data_copy.db")
