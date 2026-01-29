@@ -5,31 +5,28 @@ import sqlite3
 import epoch
 import os
 import AddBucket
-import
-
-shutil.copyfile("TaskBucket_Data.db","TaskBucket_Data_copy.db")
 
 connection = sqlite3.connect("TaskBucket_Data.db")
 cursor = connection.cursor()
 
-#finding next buckets
-cursor.execute(f"""
-SELECT bucketType, startTime, finishTime
-FROM Buckets
-WHERE startTime > {epoch.now()}
+def TaskArrangementAlgorithm(taskToPlace):
+    shutil.copyfile("TaskBucket_Data.db","TaskBucket_Data_copy.db")
 
-""")
+    #finding next buckets
+    cursor.execute(f"""
+        SELECT bucketType, startTime, finishTime
+        FROM Buckets
+        WHERE startTime BETWEEN {epoch.now()} AND {taskToPlace.deadline}
+        ORDER BY startTime ASC
+    """)
 
-bucketsAfterCurrentTime = []
+    bucketsAfterCurrentTime = []
 
-for fetchedBucket in cursor.fetchall():
-    createdBucket = AddBucket.Bucket(fetchedBucket[0],fetchedBucket[1],fetchedBucket[2])
-    bucketsAfterCurrentTime.append(createdBucket)
+    for fetchedBucket in cursor.fetchall():
+        createdBucket = AddBucket.Bucket(fetchedBucket[0],fetchedBucket[1],fetchedBucket[2])
+        bucketsAfterCurrentTime.append(createdBucket)
 
-#main loop
-for bucket in BucketsAfterCurrentTime:
-    if bucket
+    for bucket in bucketsAfterCurrentTime:
+        if taskToPlace.currentTime 
+    os.remove("TaskBucket_Data_copy.db")
 
-
-    
-os.remove("TaskBucket_Data_copy.db")
