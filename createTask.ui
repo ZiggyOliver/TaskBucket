@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QMainWindow" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QFormLayout" name="formLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Task Name</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPlainTextEdit" name="taskNameEdit"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Task Catagory</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPlainTextEdit" name="taskBucketTypeEdit"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Task Deadline</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QDateTimeEdit" name="taskDeadlineEdit"/>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Estimated Task Time</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QTimeEdit" name="estTaskTime"/>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Task Description</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QPlainTextEdit" name="taskDescriptionEdit"/>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Task Status Set</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QPlainTextEdit" name="taskStatusEdit"/>
+    </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>Task Recursion</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QRadioButton" name="dailyRecRadio">
+      <property name="text">
+       <string>Every Day</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="1">
+     <widget class="QRadioButton" name="weeklyRecRadio">
+      <property name="text">
+       <string>Every Week</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="1">
+     <widget class="QRadioButton" name="monthlyRecRadio">
+      <property name="text">
+       <string>Every Month</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1">
+     <widget class="QRadioButton" name="yearlyRecRadio">
+      <property name="text">
+       <string>Every Year</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="1">
+     <widget class="QDialogButtonBox" name="buttonBox">
+      <property name="standardButtons">
+       <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>Maximum Session Time</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QTimeEdit" name="maxSessionTimeEdit"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,84 @@
+import sqlite3
+
+
+class Task:
+    taskID = float("nan")
+    taskName = ""
+    compatibleBucketType = ""
+    deadline = float("nan")
+    estimatedTime = float("nan")
+    description = ""
+    maximumSessionTime = float("nan")
+    status = ""
+    recursion = ""
+
+    def __init__(self, taskName, compatibleBucketType, deadline, estimatedTime, description,
+                 maximumSessionTime, status, recursion):
+
+        self.taskName = taskName
+        self.compatibleBucketType = compatibleBucketType
+        self.deadline = deadline
+        self.estimatedTime = estimatedTime
+        self.description = description
+        self.maximumSessionTime = maximumSessionTime
+        
+
+    def AddTaskToDB(self):
+        connection = sqlite3.connect("TaskBucket_Data.db")
+        cursor = connection.cursor()
+        operationString = f"""
+        INSERT INTO Tasks (name, compatibleBucketType, deadline, description, estimatedTime)
+        VALUES ("{self.taskName}", "{self.compatibleBucketType}",
+                 {self.deadline}, "{self.description}", {self.estimatedTime})
+        """
+
+        cursor.execute(operationString)
+        print(operationString)
+        connection.commit()
+        print("task added succesfully to database")
+
+class Bucket:
+    bucketID = float("nan")
+    bucketType = ""
+    startTime = float("nan")
+    finishTime = float("nan")
+
+    def __init__(self,bucketID, bucketType, startTime, finishTime):
+        self.bucketID = bucketID
+        self.bucketType = bucketType
+        self.startTime = startTime
+        self.finishTime = finishTime
+
+    def AddBucketToDB():
+        connection = sqlite3.connect("TaskBucket_Data.db")
+        cursor = connection.cursor()
+
+        cursor.execute(f"""
+        INSERT INTO Buckets (bucketType, startTime, finishTime)
+        VALUES ("{self.bucketType}", {self.startTime}, {self.finishTime})
+        """)
+        connection.commit()
+
+class TaskBucket:
+    task = float("nan")
+    bucket = float("nan")
+    sessionTimeStart = float("nan")
+    sessionTimeEnd = float("nan")
+
+    def __init__(self, task, bucket, sessionTimeStart, sessionTimeEnd):
+        self.task = task
+        self.bucket = bucket
+        self.sessionTimeStart = sessionTimeStart
+        self.sessionTimeEnd = sessionTimeEnd
+
+
+    def AddTaskBucketToDB(self):
+        connection = sqlite3.connect("TaskBucket_Data.db")
+        cursor = connection.cursor()
+
+        cursor.execute(f"""
+        INSERT INTO TaskBuckets (taskID, bucketID, sessionTimeStart, SessionTimeEnd)
+        VALUES ("{self.task}", {self.bucket}, {self.sessionTimeStart},
+                 {self.sessionTimeEnd})
+        """)
+        connection.commit()

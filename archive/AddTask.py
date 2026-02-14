@@ -1,6 +1,6 @@
 import sqlite3
 
-
+#Task
 class Task:
     taskID = float("nan")
     taskName = ""
@@ -15,18 +15,16 @@ class Task:
         self.estimatedTime = estimatedTime
         self.description = description
         self.maximumSessionTime = maximumSessionTime
-        
 
-def AddTaskToDB(taskToAdd):
+    def AddTaskToDB(taskToAdd):
     connection = sqlite3.connect("TaskBucket_Data.db")
     cursor = connection.cursor()
 
     operationString = f"""
     INSERT INTO Tasks (name, compatibleBucketType, deadline, description, estimatedTime)
     VALUES ("{taskToAdd.taskName}", "{taskToAdd.compatibleBucketType}", {taskToAdd.deadline}, "{taskToAdd.description}", {taskToAdd.estimatedTime})
-    ""
+    """
 
     cursor.execute(operationString)
     print(operationString)
     connection.commit()
-
