@@ -1,10 +1,12 @@
 import sys
 from PySide6.QtWidgets import (QApplication, QMainWindow, QLabel, QFormLayout,
-                              QDialogButtonBox as QDialogueButtonBox)
+                               QDialogButtonBox as QDialogueButtonBox)
 from PySide6.QtCore import Qt, QFile, Signal, Slot
 from ui_createTask import Ui_Form
 from taskBucketObjects import Task
 import epoch
+import createTask
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -15,7 +17,19 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__" or True:
     app = QApplication(sys.argv)
     window = MainWindow()
+    warningShown = False
 
+    def showWarning(warningText):
+        global warningShown
+        if not warningShown:
+            global warningLabel
+            warningLabel = QLabel()
+            window.ui.formLayout.addWidget(warningLabel)
+            warningLabel.setText(warningText)
+            warningShown = True
+        else:
+            warningLabel.setText(warningText)
+        
 
     @Slot()
     def CreateTask():
@@ -24,7 +38,7 @@ if __name__ == "__main__" or True:
         taskDeadline = window.ui.taskDeadlineEdit.dateTime().toSecsSinceEpoch()
         estimatedTime = window.ui.estTaskTime.time().msecsSinceStartOfDay() // 1000
         description = window.ui.taskDescriptionEdit.toPlainText()
-        maxSessionTime = window.ui.maxSessionTimeEdit.time().msecsSinceStartOfDay() //1000
+        maxSessionTime = window.ui.maxSessionTimeEdit.time().msecsSinceStartOfDay() // 1000
         status = window.ui.taskStatusEdit.toPlainText()
         recursion = ""
         if window.ui.dailyRecRadio.isChecked(): recursion = "daily"
@@ -47,8 +61,10 @@ if __name__ == "__main__" or True:
             taskToCreate = Task(taskName, compatibleBucketType, taskDeadline, estimatedTime,
                                 description, maxSessionTime, status, recursion)
             taskToCreate.AddTaskToDB()
+            window.close()
         else:
             print(warning)
+            showWarning(warning)
             
 
     okButton = window.ui.buttonBox.button(QDialogueButtonBox.Ok)
@@ -59,7 +75,3 @@ if __name__ == "__main__" or True:
     
     window.show()
     sys.exit(app.exec())
-
-        
-
-    

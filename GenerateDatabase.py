@@ -12,7 +12,10 @@ def GenerateDatabase():
         compatibleBucketType TEXT,
         deadline INTEGER,
         description TEXT,
-        estimatedTime INTEGER)
+        estimatedTime INTEGER,
+        maxSessionTime INTEGER,
+        status TEXT,
+        recursion TEXT)
     """)
 
     #Bucket table generation
