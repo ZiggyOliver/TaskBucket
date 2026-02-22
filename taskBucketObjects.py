@@ -43,13 +43,12 @@ class Bucket:
     startTime = float("nan")
     finishTime = float("nan")
 
-    def __init__(self,bucketID, bucketType, startTime, finishTime):
-        self.bucketID = bucketID
+    def __init__(self, bucketType, startTime, finishTime):
         self.bucketType = bucketType
         self.startTime = startTime
         self.finishTime = finishTime
 
-    def AddBucketToDB():
+    def AddBucketToDB(self):
         connection = sqlite3.connect("TaskBucket_Data.db")
         cursor = connection.cursor()
 
