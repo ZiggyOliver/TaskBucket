@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'createBucket.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.10.2
+## Created by: Qt User Interface Compiler version 6.10.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 534, 418))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 517, 418))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.AddBucketsArea = QWidget(self.scrollAreaWidgetContents_2)
@@ -97,19 +97,16 @@ class Ui_MainWindow(object):
 
         self.weeklyCalendar = QWidget(self.widget)
         self.weeklyCalendar.setObjectName(u"weeklyCalendar")
-        self.weeklyCalendar.setMinimumSize(QSize(0, 420))
+        self.weeklyCalendar.setMinimumSize(QSize(120, 420))
         self.weeklyCalendar.setMaximumSize(QSize(630, 16777205))
         self.verticalLayout = QVBoxLayout(self.weeklyCalendar)
-        self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.verticalSpacer_16 = QSpacerItem(20, 30, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
 
-        self.verticalLayout.addItem(self.verticalSpacer_2)
+        self.verticalLayout.addItem(self.verticalSpacer_16)
 
         self.dayLabels = QFrame(self.weeklyCalendar)
         self.dayLabels.setObjectName(u"dayLabels")
-        self.dayLabels.setMinimumSize(QSize(0, 30))
         self.dayLabels.setMaximumSize(QSize(16777215, 30))
         palette = QPalette()
         brush = QBrush(QColor(255, 255, 255, 255))
@@ -192,60 +189,58 @@ class Ui_MainWindow(object):
         self.dayLabels.setPalette(palette)
         self.dayLabels.setFrameShape(QFrame.Shape.StyledPanel)
         self.dayLabels.setFrameShadow(QFrame.Shadow.Raised)
-        self.horizontalLayout = QHBoxLayout(self.dayLabels)
-        self.horizontalLayout.setSpacing(0)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.Alabel = QLabel(self.dayLabels)
-        self.Alabel.setObjectName(u"Alabel")
+        self.horizontalLayout_5 = QHBoxLayout(self.dayLabels)
+        self.horizontalLayout_5.setSpacing(0)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.Alabel_2 = QLabel(self.dayLabels)
+        self.Alabel_2.setObjectName(u"Alabel_2")
 
-        self.horizontalLayout.addWidget(self.Alabel)
+        self.horizontalLayout_5.addWidget(self.Alabel_2)
 
-        self.Blabel = QLabel(self.dayLabels)
-        self.Blabel.setObjectName(u"Blabel")
+        self.Blabel_2 = QLabel(self.dayLabels)
+        self.Blabel_2.setObjectName(u"Blabel_2")
 
-        self.horizontalLayout.addWidget(self.Blabel)
+        self.horizontalLayout_5.addWidget(self.Blabel_2)
 
-        self.Glabel = QLabel(self.dayLabels)
-        self.Glabel.setObjectName(u"Glabel")
+        self.Glabel_2 = QLabel(self.dayLabels)
+        self.Glabel_2.setObjectName(u"Glabel_2")
 
-        self.horizontalLayout.addWidget(self.Glabel)
+        self.horizontalLayout_5.addWidget(self.Glabel_2)
 
-        self.Flabel = QLabel(self.dayLabels)
-        self.Flabel.setObjectName(u"Flabel")
+        self.Flabel_2 = QLabel(self.dayLabels)
+        self.Flabel_2.setObjectName(u"Flabel_2")
 
-        self.horizontalLayout.addWidget(self.Flabel)
+        self.horizontalLayout_5.addWidget(self.Flabel_2)
 
-        self.Elabel = QLabel(self.dayLabels)
-        self.Elabel.setObjectName(u"Elabel")
+        self.Elabel_2 = QLabel(self.dayLabels)
+        self.Elabel_2.setObjectName(u"Elabel_2")
 
-        self.horizontalLayout.addWidget(self.Elabel)
+        self.horizontalLayout_5.addWidget(self.Elabel_2)
 
-        self.Dlabel = QLabel(self.dayLabels)
-        self.Dlabel.setObjectName(u"Dlabel")
+        self.Dlabel_2 = QLabel(self.dayLabels)
+        self.Dlabel_2.setObjectName(u"Dlabel_2")
 
-        self.horizontalLayout.addWidget(self.Dlabel)
+        self.horizontalLayout_5.addWidget(self.Dlabel_2)
 
-        self.Clabel = QLabel(self.dayLabels)
-        self.Clabel.setObjectName(u"Clabel")
+        self.Clabel_2 = QLabel(self.dayLabels)
+        self.Clabel_2.setObjectName(u"Clabel_2")
 
-        self.horizontalLayout.addWidget(self.Clabel)
+        self.horizontalLayout_5.addWidget(self.Clabel_2)
 
 
         self.verticalLayout.addWidget(self.dayLabels)
 
         self.days = QFrame(self.weeklyCalendar)
         self.days.setObjectName(u"days")
-        self.days.setMinimumSize(QSize(300, 300))
-        self.days.setMaximumSize(QSize(16777215, 310))
         self.days.setFrameShape(QFrame.Shape.StyledPanel)
         self.days.setFrameShadow(QFrame.Shadow.Raised)
-        self.horizontalLayout_2 = QHBoxLayout(self.days)
-        self.horizontalLayout_2.setSpacing(0)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.Aday = QFrame(self.days)
-        self.Aday.setObjectName(u"Aday")
+        self.horizontalLayout_6 = QHBoxLayout(self.days)
+        self.horizontalLayout_6.setSpacing(0)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.Aday_2 = QFrame(self.days)
+        self.Aday_2.setObjectName(u"Aday_2")
         palette1 = QPalette()
         palette1.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette1.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -310,16 +305,33 @@ class Ui_MainWindow(object):
 #if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
         palette1.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Accent, brush)
 #endif
-        self.Aday.setPalette(palette1)
-        self.Aday.setFrameShape(QFrame.Shape.StyledPanel)
-        self.Aday.setFrameShadow(QFrame.Shadow.Raised)
-        self.Aday.setLineWidth(32767)
-        self.Aday.setMidLineWidth(15)
+        self.Aday_2.setPalette(palette1)
+        self.Aday_2.setFrameShape(QFrame.Shape.StyledPanel)
+        self.Aday_2.setFrameShadow(QFrame.Shadow.Raised)
+        self.Aday_2.setLineWidth(32767)
+        self.Aday_2.setMidLineWidth(15)
+        self.verticalLayout_18 = QVBoxLayout(self.Aday_2)
+        self.verticalLayout_18.setSpacing(0)
+        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
+        self.verticalLayout_18.setContentsMargins(0, 0, 0, 0)
+        self.Acontents = QWidget(self.Aday_2)
+        self.Acontents.setObjectName(u"Acontents")
+        self.verticalLayout_19 = QVBoxLayout(self.Acontents)
+        self.verticalLayout_19.setSpacing(0)
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.verticalLayout_19.setContentsMargins(0, 0, 0, 0)
 
-        self.horizontalLayout_2.addWidget(self.Aday)
+        self.verticalLayout_18.addWidget(self.Acontents)
 
-        self.Bday = QFrame(self.days)
-        self.Bday.setObjectName(u"Bday")
+        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_18.addItem(self.verticalSpacer_9)
+
+
+        self.horizontalLayout_6.addWidget(self.Aday_2)
+
+        self.Bday_2 = QFrame(self.days)
+        self.Bday_2.setObjectName(u"Bday_2")
         palette2 = QPalette()
         palette2.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette2.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -384,16 +396,24 @@ class Ui_MainWindow(object):
 #if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
         palette2.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Accent, brush)
 #endif
-        self.Bday.setPalette(palette2)
-        self.Bday.setFrameShape(QFrame.Shape.StyledPanel)
-        self.Bday.setFrameShadow(QFrame.Shadow.Raised)
-        self.Bday.setLineWidth(32767)
-        self.Bday.setMidLineWidth(15)
+        self.Bday_2.setPalette(palette2)
+        self.Bday_2.setFrameShape(QFrame.Shape.StyledPanel)
+        self.Bday_2.setFrameShadow(QFrame.Shadow.Raised)
+        self.Bday_2.setLineWidth(32767)
+        self.Bday_2.setMidLineWidth(15)
+        self.verticalLayout_20 = QVBoxLayout(self.Bday_2)
+        self.verticalLayout_20.setSpacing(0)
+        self.verticalLayout_20.setObjectName(u"verticalLayout_20")
+        self.verticalLayout_20.setContentsMargins(0, 0, 0, 0)
+        self.Bcontents = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.horizontalLayout_2.addWidget(self.Bday)
+        self.verticalLayout_20.addItem(self.Bcontents)
 
-        self.Cday = QFrame(self.days)
-        self.Cday.setObjectName(u"Cday")
+
+        self.horizontalLayout_6.addWidget(self.Bday_2)
+
+        self.Cday_2 = QFrame(self.days)
+        self.Cday_2.setObjectName(u"Cday_2")
         palette3 = QPalette()
         palette3.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette3.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -458,16 +478,24 @@ class Ui_MainWindow(object):
 #if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
         palette3.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Accent, brush)
 #endif
-        self.Cday.setPalette(palette3)
-        self.Cday.setFrameShape(QFrame.Shape.StyledPanel)
-        self.Cday.setFrameShadow(QFrame.Shadow.Raised)
-        self.Cday.setLineWidth(32767)
-        self.Cday.setMidLineWidth(15)
+        self.Cday_2.setPalette(palette3)
+        self.Cday_2.setFrameShape(QFrame.Shape.StyledPanel)
+        self.Cday_2.setFrameShadow(QFrame.Shadow.Raised)
+        self.Cday_2.setLineWidth(32767)
+        self.Cday_2.setMidLineWidth(15)
+        self.verticalLayout_21 = QVBoxLayout(self.Cday_2)
+        self.verticalLayout_21.setSpacing(0)
+        self.verticalLayout_21.setObjectName(u"verticalLayout_21")
+        self.verticalLayout_21.setContentsMargins(0, 0, 0, 0)
+        self.Ccontents = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.horizontalLayout_2.addWidget(self.Cday)
+        self.verticalLayout_21.addItem(self.Ccontents)
 
-        self.Eday = QFrame(self.days)
-        self.Eday.setObjectName(u"Eday")
+
+        self.horizontalLayout_6.addWidget(self.Cday_2)
+
+        self.Dday_2 = QFrame(self.days)
+        self.Dday_2.setObjectName(u"Dday_2")
         palette4 = QPalette()
         palette4.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette4.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -532,16 +560,33 @@ class Ui_MainWindow(object):
 #if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
         palette4.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Accent, brush)
 #endif
-        self.Eday.setPalette(palette4)
-        self.Eday.setFrameShape(QFrame.Shape.StyledPanel)
-        self.Eday.setFrameShadow(QFrame.Shadow.Raised)
-        self.Eday.setLineWidth(32767)
-        self.Eday.setMidLineWidth(15)
+        self.Dday_2.setPalette(palette4)
+        self.Dday_2.setFrameShape(QFrame.Shape.StyledPanel)
+        self.Dday_2.setFrameShadow(QFrame.Shadow.Raised)
+        self.Dday_2.setLineWidth(32767)
+        self.Dday_2.setMidLineWidth(15)
+        self.verticalLayout_24 = QVBoxLayout(self.Dday_2)
+        self.verticalLayout_24.setSpacing(0)
+        self.verticalLayout_24.setObjectName(u"verticalLayout_24")
+        self.verticalLayout_24.setContentsMargins(0, 0, 0, 0)
+        self.Dcontents = QWidget(self.Dday_2)
+        self.Dcontents.setObjectName(u"Dcontents")
+        self.verticalLayout_25 = QVBoxLayout(self.Dcontents)
+        self.verticalLayout_25.setSpacing(0)
+        self.verticalLayout_25.setObjectName(u"verticalLayout_25")
+        self.verticalLayout_25.setContentsMargins(0, 0, 0, 0)
 
-        self.horizontalLayout_2.addWidget(self.Eday)
+        self.verticalLayout_24.addWidget(self.Dcontents)
 
-        self.Fday = QFrame(self.days)
-        self.Fday.setObjectName(u"Fday")
+        self.verticalSpacer_12 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_24.addItem(self.verticalSpacer_12)
+
+
+        self.horizontalLayout_6.addWidget(self.Dday_2)
+
+        self.Eday_2 = QFrame(self.days)
+        self.Eday_2.setObjectName(u"Eday_2")
         palette5 = QPalette()
         palette5.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette5.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -606,16 +651,33 @@ class Ui_MainWindow(object):
 #if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
         palette5.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Accent, brush)
 #endif
-        self.Fday.setPalette(palette5)
-        self.Fday.setFrameShape(QFrame.Shape.StyledPanel)
-        self.Fday.setFrameShadow(QFrame.Shadow.Raised)
-        self.Fday.setLineWidth(32767)
-        self.Fday.setMidLineWidth(15)
+        self.Eday_2.setPalette(palette5)
+        self.Eday_2.setFrameShape(QFrame.Shape.StyledPanel)
+        self.Eday_2.setFrameShadow(QFrame.Shadow.Raised)
+        self.Eday_2.setLineWidth(32767)
+        self.Eday_2.setMidLineWidth(15)
+        self.verticalLayout_26 = QVBoxLayout(self.Eday_2)
+        self.verticalLayout_26.setSpacing(0)
+        self.verticalLayout_26.setObjectName(u"verticalLayout_26")
+        self.verticalLayout_26.setContentsMargins(0, 0, 0, 0)
+        self.widget_13 = QWidget(self.Eday_2)
+        self.widget_13.setObjectName(u"widget_13")
+        self.verticalLayout_27 = QVBoxLayout(self.widget_13)
+        self.verticalLayout_27.setSpacing(0)
+        self.verticalLayout_27.setObjectName(u"verticalLayout_27")
+        self.verticalLayout_27.setContentsMargins(0, 0, 0, 0)
 
-        self.horizontalLayout_2.addWidget(self.Fday)
+        self.verticalLayout_26.addWidget(self.widget_13)
 
-        self.Gday = QFrame(self.days)
-        self.Gday.setObjectName(u"Gday")
+        self.Econtents = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_26.addItem(self.Econtents)
+
+
+        self.horizontalLayout_6.addWidget(self.Eday_2)
+
+        self.Fday_2 = QFrame(self.days)
+        self.Fday_2.setObjectName(u"Fday_2")
         palette6 = QPalette()
         palette6.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette6.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -680,16 +742,33 @@ class Ui_MainWindow(object):
 #if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
         palette6.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Accent, brush)
 #endif
-        self.Gday.setPalette(palette6)
-        self.Gday.setFrameShape(QFrame.Shape.StyledPanel)
-        self.Gday.setFrameShadow(QFrame.Shadow.Raised)
-        self.Gday.setLineWidth(32767)
-        self.Gday.setMidLineWidth(32767)
+        self.Fday_2.setPalette(palette6)
+        self.Fday_2.setFrameShape(QFrame.Shape.StyledPanel)
+        self.Fday_2.setFrameShadow(QFrame.Shadow.Raised)
+        self.Fday_2.setLineWidth(32767)
+        self.Fday_2.setMidLineWidth(32767)
+        self.verticalLayout_28 = QVBoxLayout(self.Fday_2)
+        self.verticalLayout_28.setSpacing(0)
+        self.verticalLayout_28.setObjectName(u"verticalLayout_28")
+        self.verticalLayout_28.setContentsMargins(0, 0, 0, 0)
+        self.widget_14 = QWidget(self.Fday_2)
+        self.widget_14.setObjectName(u"widget_14")
+        self.verticalLayout_29 = QVBoxLayout(self.widget_14)
+        self.verticalLayout_29.setSpacing(0)
+        self.verticalLayout_29.setObjectName(u"verticalLayout_29")
+        self.verticalLayout_29.setContentsMargins(0, 0, 0, 0)
 
-        self.horizontalLayout_2.addWidget(self.Gday)
+        self.verticalLayout_28.addWidget(self.widget_14)
 
-        self.Hday = QFrame(self.days)
-        self.Hday.setObjectName(u"Hday")
+        self.Fcontents = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_28.addItem(self.Fcontents)
+
+
+        self.horizontalLayout_6.addWidget(self.Fday_2)
+
+        self.Gday_2 = QFrame(self.days)
+        self.Gday_2.setObjectName(u"Gday_2")
         palette7 = QPalette()
         palette7.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette7.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -754,13 +833,30 @@ class Ui_MainWindow(object):
 #if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
         palette7.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Accent, brush)
 #endif
-        self.Hday.setPalette(palette7)
-        self.Hday.setFrameShape(QFrame.Shape.StyledPanel)
-        self.Hday.setFrameShadow(QFrame.Shadow.Raised)
-        self.Hday.setLineWidth(32767)
-        self.Hday.setMidLineWidth(15)
+        self.Gday_2.setPalette(palette7)
+        self.Gday_2.setFrameShape(QFrame.Shape.StyledPanel)
+        self.Gday_2.setFrameShadow(QFrame.Shadow.Raised)
+        self.Gday_2.setLineWidth(32767)
+        self.Gday_2.setMidLineWidth(15)
+        self.verticalLayout_30 = QVBoxLayout(self.Gday_2)
+        self.verticalLayout_30.setSpacing(0)
+        self.verticalLayout_30.setObjectName(u"verticalLayout_30")
+        self.verticalLayout_30.setContentsMargins(0, 0, 0, 0)
+        self.Gcontents = QWidget(self.Gday_2)
+        self.Gcontents.setObjectName(u"Gcontents")
+        self.verticalLayout_31 = QVBoxLayout(self.Gcontents)
+        self.verticalLayout_31.setSpacing(0)
+        self.verticalLayout_31.setObjectName(u"verticalLayout_31")
+        self.verticalLayout_31.setContentsMargins(0, 0, 0, 0)
 
-        self.horizontalLayout_2.addWidget(self.Hday)
+        self.verticalLayout_30.addWidget(self.Gcontents)
+
+        self.verticalSpacer_15 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_30.addItem(self.verticalSpacer_15)
+
+
+        self.horizontalLayout_6.addWidget(self.Gday_2)
 
 
         self.verticalLayout.addWidget(self.days)
@@ -798,12 +894,12 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Bucket Times", None))
         self.AddBucketTimeButton.setText(QCoreApplication.translate("MainWindow", u"Add New Time", None))
         self.RemoveBucketTimeButton.setText(QCoreApplication.translate("MainWindow", u"Remove Last Time", None))
-        self.Alabel.setText(QCoreApplication.translate("MainWindow", u"Monday", None))
-        self.Blabel.setText(QCoreApplication.translate("MainWindow", u"Tuesday", None))
-        self.Glabel.setText(QCoreApplication.translate("MainWindow", u"Wednesday", None))
-        self.Flabel.setText(QCoreApplication.translate("MainWindow", u"Thursday", None))
-        self.Elabel.setText(QCoreApplication.translate("MainWindow", u"Friday", None))
-        self.Dlabel.setText(QCoreApplication.translate("MainWindow", u"Saturday", None))
-        self.Clabel.setText(QCoreApplication.translate("MainWindow", u"Sunday", None))
+        self.Alabel_2.setText(QCoreApplication.translate("MainWindow", u"Monday", None))
+        self.Blabel_2.setText(QCoreApplication.translate("MainWindow", u"Tuesday", None))
+        self.Glabel_2.setText(QCoreApplication.translate("MainWindow", u"Wednesday", None))
+        self.Flabel_2.setText(QCoreApplication.translate("MainWindow", u"Thursday", None))
+        self.Elabel_2.setText(QCoreApplication.translate("MainWindow", u"Friday", None))
+        self.Dlabel_2.setText(QCoreApplication.translate("MainWindow", u"Saturday", None))
+        self.Clabel_2.setText(QCoreApplication.translate("MainWindow", u"Sunday", None))
     # retranslateUi
 

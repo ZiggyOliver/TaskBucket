@@ -6,6 +6,7 @@ from ui_createTask import Ui_Form
 from taskBucketObjects import Task
 import epoch
 import createTask
+import sqlite3
 
 
 class MainWindow(QMainWindow):
@@ -34,7 +35,7 @@ if __name__ == "__main__" or True:
     @Slot()
     def CreateTask():
         taskName = window.ui.taskNameEdit.toPlainText()
-        compatibleBucketType = window.ui.taskBucketTypeEdit.toPlainText()
+        compatibleBucketType = window.ui.taskBucketTypeSelector.currentText()
         taskDeadline = window.ui.taskDeadlineEdit.dateTime().toSecsSinceEpoch()
         estimatedTime = window.ui.estTaskTime.time().msecsSinceStartOfDay() // 1000
         description = window.ui.taskDescriptionEdit.toPlainText()
@@ -65,7 +66,20 @@ if __name__ == "__main__" or True:
         else:
             print(warning)
             showWarning(warning)
-            
+
+    #setup TaskBucketTypeSelector to display bucket types
+    connection = sqlite3.connect("TaskBucket_Data.db")
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT bucketType
+        FROM Buckets
+        ORDER BY bucketType
+    """)
+
+    bucketTypes = []
+    for bucketType in cursor.fetchall(): bucketTypes.append(bucketType[0])
+    window.ui.taskBucketTypeSelector.addItems(bucketTypes)
 
     okButton = window.ui.buttonBox.button(QDialogueButtonBox.Ok)
     okButton.clicked.connect(CreateTask)

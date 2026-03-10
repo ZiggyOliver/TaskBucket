@@ -15,16 +15,16 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractButton, QApplication, QDateTimeEdit, QDialogButtonBox,
-    QFormLayout, QLabel, QMainWindow, QMenuBar,
-    QPlainTextEdit, QRadioButton, QSizePolicy, QStatusBar,
-    QTimeEdit, QWidget)
+from PySide6.QtWidgets import (QAbstractButton, QApplication, QComboBox, QDateTimeEdit,
+    QDialogButtonBox, QFormLayout, QLabel, QMainWindow,
+    QMenuBar, QPlainTextEdit, QRadioButton, QSizePolicy,
+    QStatusBar, QTimeEdit, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(800, 600)
+        Form.resize(800, 626)
         self.centralwidget = QWidget(Form)
         self.centralwidget.setObjectName(u"centralwidget")
         self.formLayout = QFormLayout(self.centralwidget)
@@ -43,11 +43,6 @@ class Ui_Form(object):
         self.label_2.setObjectName(u"label_2")
 
         self.formLayout.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_2)
-
-        self.taskBucketTypeEdit = QPlainTextEdit(self.centralwidget)
-        self.taskBucketTypeEdit.setObjectName(u"taskBucketTypeEdit")
-
-        self.formLayout.setWidget(1, QFormLayout.ItemRole.FieldRole, self.taskBucketTypeEdit)
 
         self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
@@ -130,6 +125,11 @@ class Ui_Form(object):
 
         self.formLayout.setWidget(6, QFormLayout.ItemRole.FieldRole, self.maxSessionTimeEdit)
 
+        self.taskBucketTypeSelector = QComboBox(self.centralwidget)
+        self.taskBucketTypeSelector.setObjectName(u"taskBucketTypeSelector")
+
+        self.formLayout.setWidget(1, QFormLayout.ItemRole.FieldRole, self.taskBucketTypeSelector)
+
         Form.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(Form)
         self.menubar.setObjectName(u"menubar")
@@ -147,7 +147,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("Form", u"Task Name", None))
-        self.label_2.setText(QCoreApplication.translate("Form", u"Task Catagory", None))
+        self.label_2.setText(QCoreApplication.translate("Form", u"Task Bucket Type", None))
         self.label_3.setText(QCoreApplication.translate("Form", u"Task Deadline", None))
         self.label_4.setText(QCoreApplication.translate("Form", u"Estimated Task Time", None))
         self.label_5.setText(QCoreApplication.translate("Form", u"Task Description", None))

@@ -45,7 +45,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>534</width>
+            <width>517</width>
             <height>418</height>
            </rect>
           </property>
@@ -119,7 +119,7 @@
         <widget class="QWidget" name="weeklyCalendar" native="true">
          <property name="minimumSize">
           <size>
-           <width>0</width>
+           <width>120</width>
            <height>420</height>
           </size>
          </property>
@@ -130,42 +130,24 @@
           </size>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
-          <property name="spacing">
-           <number>0</number>
-          </property>
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
           <item>
-           <spacer name="verticalSpacer_2">
+           <spacer name="verticalSpacer_16">
             <property name="orientation">
              <enum>Qt::Orientation::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Policy::Fixed</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
-              <height>40</height>
+              <height>30</height>
              </size>
             </property>
            </spacer>
           </item>
           <item>
            <widget class="QFrame" name="dayLabels">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
@@ -647,7 +629,7 @@
             <property name="frameShadow">
              <enum>QFrame::Shadow::Raised</enum>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout">
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -664,49 +646,49 @@
               <number>0</number>
              </property>
              <item>
-              <widget class="QLabel" name="Alabel">
+              <widget class="QLabel" name="Alabel_2">
                <property name="text">
                 <string>Monday</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="Blabel">
+              <widget class="QLabel" name="Blabel_2">
                <property name="text">
                 <string>Tuesday</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="Glabel">
+              <widget class="QLabel" name="Glabel_2">
                <property name="text">
                 <string>Wednesday</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="Flabel">
+              <widget class="QLabel" name="Flabel_2">
                <property name="text">
                 <string>Thursday</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="Elabel">
+              <widget class="QLabel" name="Elabel_2">
                <property name="text">
                 <string>Friday</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="Dlabel">
+              <widget class="QLabel" name="Dlabel_2">
                <property name="text">
                 <string>Saturday</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="Clabel">
+              <widget class="QLabel" name="Clabel_2">
                <property name="text">
                 <string>Sunday</string>
                </property>
@@ -717,25 +699,13 @@
           </item>
           <item>
            <widget class="QFrame" name="days">
-            <property name="minimumSize">
-             <size>
-              <width>300</width>
-              <height>300</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>310</height>
-             </size>
-            </property>
             <property name="frameShape">
              <enum>QFrame::Shape::StyledPanel</enum>
             </property>
             <property name="frameShadow">
              <enum>QFrame::Shadow::Raised</enum>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -752,7 +722,7 @@
               <number>0</number>
              </property>
              <item>
-              <widget class="QFrame" name="Aday">
+              <widget class="QFrame" name="Aday_2">
                <property name="palette">
                 <palette>
                  <active>
@@ -1234,10 +1204,61 @@
                <property name="midLineWidth">
                 <number>15</number>
                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_18">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QWidget" name="Acontents" native="true">
+                  <layout class="QVBoxLayout" name="verticalLayout_19">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_9">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="Bday">
+              <widget class="QFrame" name="Bday_2">
                <property name="palette">
                 <palette>
                  <active>
@@ -1719,10 +1740,40 @@
                <property name="midLineWidth">
                 <number>15</number>
                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_20" stretch="0">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <spacer name="Bcontents">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="Cday">
+              <widget class="QFrame" name="Cday_2">
                <property name="palette">
                 <palette>
                  <active>
@@ -2204,10 +2255,40 @@
                <property name="midLineWidth">
                 <number>15</number>
                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_21">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <spacer name="Ccontents">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="Eday">
+              <widget class="QFrame" name="Dday_2">
                <property name="palette">
                 <palette>
                  <active>
@@ -2689,10 +2770,61 @@
                <property name="midLineWidth">
                 <number>15</number>
                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_24">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QWidget" name="Dcontents" native="true">
+                  <layout class="QVBoxLayout" name="verticalLayout_25">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_12">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="Fday">
+              <widget class="QFrame" name="Eday_2">
                <property name="palette">
                 <palette>
                  <active>
@@ -3174,10 +3306,61 @@
                <property name="midLineWidth">
                 <number>15</number>
                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_26">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QWidget" name="widget_13" native="true">
+                  <layout class="QVBoxLayout" name="verticalLayout_27">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="Econtents">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="Gday">
+              <widget class="QFrame" name="Fday_2">
                <property name="palette">
                 <palette>
                  <active>
@@ -3659,10 +3842,61 @@
                <property name="midLineWidth">
                 <number>32767</number>
                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_28">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QWidget" name="widget_14" native="true">
+                  <layout class="QVBoxLayout" name="verticalLayout_29">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="Fcontents">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="Hday">
+              <widget class="QFrame" name="Gday_2">
                <property name="palette">
                 <palette>
                  <active>
@@ -4144,6 +4378,57 @@
                <property name="midLineWidth">
                 <number>15</number>
                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_30">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QWidget" name="Gcontents" native="true">
+                  <layout class="QVBoxLayout" name="verticalLayout_31">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_15">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </widget>
              </item>
             </layout>
