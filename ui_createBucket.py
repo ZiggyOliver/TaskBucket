@@ -405,9 +405,18 @@ class Ui_MainWindow(object):
         self.verticalLayout_20.setSpacing(0)
         self.verticalLayout_20.setObjectName(u"verticalLayout_20")
         self.verticalLayout_20.setContentsMargins(0, 0, 0, 0)
-        self.Bcontents = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.Bcontents = QWidget(self.Bday_2)
+        self.Bcontents.setObjectName(u"Bcontents")
+        self.verticalLayout_4 = QVBoxLayout(self.Bcontents)
+        self.verticalLayout_4.setSpacing(0)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
 
-        self.verticalLayout_20.addItem(self.Bcontents)
+        self.verticalLayout_20.addWidget(self.Bcontents)
+
+        self.Bspacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_20.addItem(self.Bspacer)
 
 
         self.horizontalLayout_6.addWidget(self.Bday_2)
@@ -487,9 +496,18 @@ class Ui_MainWindow(object):
         self.verticalLayout_21.setSpacing(0)
         self.verticalLayout_21.setObjectName(u"verticalLayout_21")
         self.verticalLayout_21.setContentsMargins(0, 0, 0, 0)
-        self.Ccontents = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.Ccontents = QWidget(self.Cday_2)
+        self.Ccontents.setObjectName(u"Ccontents")
+        self.verticalLayout_5 = QVBoxLayout(self.Ccontents)
+        self.verticalLayout_5.setSpacing(0)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
 
-        self.verticalLayout_21.addItem(self.Ccontents)
+        self.verticalLayout_21.addWidget(self.Ccontents)
+
+        self.Cspacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_21.addItem(self.Cspacer)
 
 
         self.horizontalLayout_6.addWidget(self.Cday_2)
@@ -660,18 +678,18 @@ class Ui_MainWindow(object):
         self.verticalLayout_26.setSpacing(0)
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
         self.verticalLayout_26.setContentsMargins(0, 0, 0, 0)
-        self.widget_13 = QWidget(self.Eday_2)
-        self.widget_13.setObjectName(u"widget_13")
-        self.verticalLayout_27 = QVBoxLayout(self.widget_13)
+        self.Econtents = QWidget(self.Eday_2)
+        self.Econtents.setObjectName(u"Econtents")
+        self.verticalLayout_27 = QVBoxLayout(self.Econtents)
         self.verticalLayout_27.setSpacing(0)
         self.verticalLayout_27.setObjectName(u"verticalLayout_27")
         self.verticalLayout_27.setContentsMargins(0, 0, 0, 0)
 
-        self.verticalLayout_26.addWidget(self.widget_13)
+        self.verticalLayout_26.addWidget(self.Econtents)
 
-        self.Econtents = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.Espacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.verticalLayout_26.addItem(self.Econtents)
+        self.verticalLayout_26.addItem(self.Espacer)
 
 
         self.horizontalLayout_6.addWidget(self.Eday_2)
@@ -751,18 +769,18 @@ class Ui_MainWindow(object):
         self.verticalLayout_28.setSpacing(0)
         self.verticalLayout_28.setObjectName(u"verticalLayout_28")
         self.verticalLayout_28.setContentsMargins(0, 0, 0, 0)
-        self.widget_14 = QWidget(self.Fday_2)
-        self.widget_14.setObjectName(u"widget_14")
-        self.verticalLayout_29 = QVBoxLayout(self.widget_14)
+        self.Fcontents = QWidget(self.Fday_2)
+        self.Fcontents.setObjectName(u"Fcontents")
+        self.verticalLayout_29 = QVBoxLayout(self.Fcontents)
         self.verticalLayout_29.setSpacing(0)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.verticalLayout_29.setContentsMargins(0, 0, 0, 0)
 
-        self.verticalLayout_28.addWidget(self.widget_14)
+        self.verticalLayout_28.addWidget(self.Fcontents)
 
-        self.Fcontents = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.Fspacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.verticalLayout_28.addItem(self.Fcontents)
+        self.verticalLayout_28.addItem(self.Fspacer)
 
 
         self.horizontalLayout_6.addWidget(self.Fday_2)

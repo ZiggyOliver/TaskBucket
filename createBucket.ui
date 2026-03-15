@@ -1740,7 +1740,7 @@
                <property name="midLineWidth">
                 <number>15</number>
                </property>
-               <layout class="QVBoxLayout" name="verticalLayout_20" stretch="0">
+               <layout class="QVBoxLayout" name="verticalLayout_20" stretch="0,0">
                 <property name="spacing">
                  <number>0</number>
                 </property>
@@ -1757,7 +1757,28 @@
                  <number>0</number>
                 </property>
                 <item>
-                 <spacer name="Bcontents">
+                 <widget class="QWidget" name="Bcontents" native="true">
+                  <layout class="QVBoxLayout" name="verticalLayout_4">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="Bspacer">
                   <property name="orientation">
                    <enum>Qt::Orientation::Vertical</enum>
                   </property>
@@ -2272,7 +2293,28 @@
                  <number>0</number>
                 </property>
                 <item>
-                 <spacer name="Ccontents">
+                 <widget class="QWidget" name="Ccontents" native="true">
+                  <layout class="QVBoxLayout" name="verticalLayout_5">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="Cspacer">
                   <property name="orientation">
                    <enum>Qt::Orientation::Vertical</enum>
                   </property>
@@ -3323,7 +3365,7 @@
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QWidget" name="widget_13" native="true">
+                 <widget class="QWidget" name="Econtents" native="true">
                   <layout class="QVBoxLayout" name="verticalLayout_27">
                    <property name="spacing">
                     <number>0</number>
@@ -3344,7 +3386,7 @@
                  </widget>
                 </item>
                 <item>
-                 <spacer name="Econtents">
+                 <spacer name="Espacer">
                   <property name="orientation">
                    <enum>Qt::Orientation::Vertical</enum>
                   </property>
@@ -3859,7 +3901,7 @@
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QWidget" name="widget_14" native="true">
+                 <widget class="QWidget" name="Fcontents" native="true">
                   <layout class="QVBoxLayout" name="verticalLayout_29">
                    <property name="spacing">
                     <number>0</number>
@@ -3880,7 +3922,7 @@
                  </widget>
                 </item>
                 <item>
-                 <spacer name="Fcontents">
+                 <spacer name="Fspacer">
                   <property name="orientation">
                    <enum>Qt::Orientation::Vertical</enum>
                   </property>

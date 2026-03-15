@@ -23,84 +23,126 @@ addBucketsArea = window.ui.AddBucketsArea
 bucketTimes = []
 warningShown = False
 
+connection = sqlite3.connect("TaskBucket_Data.db")
+cursor = connection.cursor()
+
+cursor.execute("""
+    SELECT startTime, finishTime
+    FROM Buckets
+               """)
+otherBuckets = cursor.fetchall()
+
+
+
 highlightWidgetsParents = {}
 calendarSpacersParents = {}
 
 @Slot()
-def HighlightBucketOnCalendar(bucketElement):
+def HighlightBucketsOnCalendar():
+    #print("HighlightBucketsOnCalendarCalled")
 
-    startTime = secondsSinceStartOfWeek(bucketElement.startDay.currentText(),
-                                        bucketElement.startTime.time())
-    endTime = secondsSinceStartOfWeek(bucketElement.finishDay.currentText(),
-                                      bucketElement.finishTime.time())
-
-    #find correct day UI element
-    daySize = window.ui.days.frameSize().height()
-    timeLenFactor = (daySize / 86400) / 2
-    match startTime // 86400:
-        case 0: dayContents = window.ui.Acontents
-        case 1: dayContents = window.ui.Bcontents
-        case 2: dayContents = window.ui.Ccontents
-        case 3: dayContents = window.ui.Dcontents
-        case 4: dayContents = window.ui.Econtents
-        case 5: dayContents = winodw.ui.Fcontents
-        case 6: dayContents = window.ui.Gcontents
-
-
-    #remove this day's previous widgets
+    #Remove All Previous Highlights
+    
+        #For Widgets
     widgetDeleteList = []
-    for widget in highlightWidgetsParents.keys():
-        if widget.parentWidget() == dayContents: widgetDeleteList.append(widget)
+    for widget in highlightWidgetsParents.keys(): widgetDeleteList.append(widget)
     for widget in widgetDeleteList:
-        dayContents.layout().removeWidget(widget)
+        #print("delete widget called")
+        widget.hide()
+        #dayContents.layout().removeWidget(widget)
         widget.destroy()
         highlightWidgetsParents.pop(widget)
         del widget
-    
-    #do the same for spacers
+
+        #For Spacers
     spacerDeleteList = []
     for spacer in calendarSpacersParents.keys():
-        if calendarSpacersParents[spacer] == dayContents: spacerDeleteList.append(spacer)
+        spacerDeleteList.append(spacer)
+        calendarSpacersParents[spacer].layout().removeItem(spacer)
     for spacer in spacerDeleteList:
-        dayContents.layout().removeItem(spacer)
+        #print("delete spacer called")
+        #dayContents.layout().removeItem(spacer)
         calendarSpacersParents.pop(spacer)
         del spacer
 
-    #create a new spacer with correct height
-    spacerHeight = (startTime % 86400) * timeLenFactor
-    newSpacer = QSpacerItem(0, spacerHeight, vData = QSizePolicy.Fixed)
-    dayContents.layout().addItem(newSpacer)
-    calendarSpacersParents[newSpacer] = dayContents
-    #do the same for a new widget
-    widgetHeight = (startTime - endTime) * timeLenFactor
-    newWidget = QWidget()
-    newWidget.setFixedHeight(widgetHeight)
-    newWidget.setAutoFillBackground(True)
-    highlightPalette = QPalette()
-    highlightPalette.setColor(QPalette.ColorRole.Window, QColour(0,255,0))
-    newWidget.setPalette(highlightPalette)
-    dayContents.layout().addWidget(newWidget)
-    highlightWidgetsParents[newWidget] = dayContents    
-    
+    #keep track of when the last item in each day ends
+    lastEndTime = {
+        window.ui.Acontents: 0,
+        window.ui.Bcontents: 0,
+        window.ui.Ccontents: 0,
+        window.ui.Dcontents: 0,
+        window.ui.Econtents: 0,
+        window.ui.Fcontents: 0,
+        window.ui.Gcontents: 0
+    }
 
-    print("=======================================")
-    print(f"""StartTime:{startTime}, endTime:{endTime}\
-          length:{widgetHeight}, spacerHeight:{spacerHeight},
-          timeLenFactor: {timeLenFactor}
-    """)
+    #sort bucketTimes by startTimeto prevent strangeness
+    bucketTimes.sort(key = lambda bucketUiElement:
+                     secondsSinceStartOfWeek(bucketUiElement.startDay.currentText(),
+                                             bucketUiElement.startTime.time()))
 
+    #Add new spacers & widgets for each BucketTimeElement
+    for bucketElement in bucketTimes:      
+        startTime = secondsSinceStartOfWeek(bucketElement.startDay.currentText(),
+                                        bucketElement.startTime.time())
+        endTime = secondsSinceStartOfWeek(bucketElement.finishDay.currentText(),
+                                      bucketElement.finishTime.time())
 
+        if (endTime - startTime) <= 0: continue
+
+        #find correct day UI element
+        daySize = window.ui.days.frameSize().height()
+        timeLenFactor = (daySize / 86400)
+        match startTime // 86400:
+            case 0: dayContents = window.ui.Acontents
+            case 1: dayContents = window.ui.Bcontents
+            case 2: dayContents = window.ui.Ccontents
+            case 3: dayContents = window.ui.Dcontents
+            case 4: dayContents = window.ui.Econtents
+            case 5: dayContents = winodw.ui.Fcontents
+            case 6: dayContents = window.ui.Gcontents
+
+        #create a QSpacerItem to space-out highlight areas
+        spacerHeight = ((startTime % 86400) - lastEndTime[dayContents]) * timeLenFactor
+        newSpacer = QSpacerItem(2,spacerHeight, vData=QSizePolicy.Policy.Fixed)
+        dayContents.layout().addSpacerItem(newSpacer)
+        calendarSpacersParents[newSpacer] = dayContents
+
+        #create the highlight Widget itself
+        widgetHeight = (endTime - startTime) * timeLenFactor
+        newWidget = QWidget()
+        newWidget.setFixedHeight(widgetHeight)
+        newWidget.setAutoFillBackground(True)
+        highlightPalette = QPalette()
+        highlightPalette.setColor(QPalette.ColorRole.Window, QColour(255,0,0, a=150))
+        newWidget.setPalette(highlightPalette)
+        dayContents.layout().addWidget(newWidget)
+        highlightWidgetsParents[newWidget] = dayContents
+
+        #update LastEndTime
+        lastEndTime[dayContents] = endTime % 86400
+
+        #some helpful debug info
+        '''
+        print("=======================================")
+        print(f"""StartTime:{startTime}, endTime:{endTime}\
+              length:{widgetHeight}, spacerHeight:{spacerHeight},
+              timeLenFactor: {timeLenFactor}
+        """)
+
+        print(highlightWidgetsParents, "\n =======\n", calendarSpacersParents)
+        '''
 
 @Slot()
 def AddBucketTime():
     newBucketTime = BucketTimeElement()
     addBucketsArea.layout().addWidget(newBucketTime)
-    bucketTimes.append(newBucketTime)                                                  
-
-    #print(startTime, endTime)
-    newBucketTime.startTime.timeChanged.connect(lambda time, bucketElement=newBucketTime:
-                                                HighlightBucketOnCalendar(newBucketTime))
-
+    bucketTimes.append(newBucketTime)
+    
+    newBucketTime.startTime.timeChanged.connect(HighlightBucketsOnCalendar)
+    newBucketTime.finishTime.timeChanged.connect(HighlightBucketsOnCalendar)
+    newBucketTime.startDay.currentTextChanged.connect(HighlightBucketsOnCalendar)
+    newBucketTime.finishDay.currentTextChanged.connect(HighlightBucketsOnCalendar)
 
 @Slot()
 def RemoveBucketTime():
@@ -108,11 +150,14 @@ def RemoveBucketTime():
     lastBucketTime = bucketTimes.pop(-1)
     addBucketsArea.layout().removeWidget(lastBucketTime)
 
+#connections for Add and Remove Bucket Time Buttons
 addNewBucketTimeElementButton  = window.ui.AddBucketTimeButton
 addNewBucketTimeElementButton.clicked.connect(AddBucketTime)
+addNewBucketTimeElementButton.clicked.connect(HighlightBucketsOnCalendar)
 
 removeLastBucketTimeButton = window.ui.RemoveBucketTimeButton
 removeLastBucketTimeButton.clicked.connect(RemoveBucketTime)
+removeLastBucketTimeButton.clicked.connect(HighlightBucketsOnCalendar)
 
 def secondsSinceStartOfWeek(day, QTimeObject):
     match day:
@@ -155,15 +200,6 @@ def CreateBucket():
                                           BucketTimeUiElement.finishTime.time())
 
         # inputvalidation - ensuring this won't be inside another bucket
-        connection = sqlite3.connect("TaskBucket_Data.db")
-        cursor = connection.cursor()
-
-        cursor.execute("""
-            SELECT startTime, finishTime
-            FROM Buckets
-                       """)
-        otherBuckets = cursor.fetchall()
-
         for bucket in otherBuckets:
             if (
                     startTime >= bucket[0] and startTime <= bucket[1]
@@ -189,7 +225,7 @@ def CreateBucket():
             inputsAreValid = False
             warning += "The bucket cannot finish before it has started\n"
 
-        #add buckets to database if all is well
+        #add bucket to database if all is well
         if inputsAreValid:
             bucketToAdd = Bucket(bucketName, startTime, endTime)
             bucketToAdd.AddBucketToDB()
@@ -199,7 +235,7 @@ def CreateBucket():
             print(warning)
             showWarning(warning)
 
-
+#connections for cancel and submit buttons
 okButton = window.ui.buttonBox.button(QDialogueButtonBox.Ok)
 okButton.clicked.connect(CreateBucket)
 
