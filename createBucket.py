@@ -99,7 +99,7 @@ def HighlightBucketsOnCalendar():
             case 2: dayContents = window.ui.Ccontents
             case 3: dayContents = window.ui.Dcontents
             case 4: dayContents = window.ui.Econtents
-            case 5: dayContents = winodw.ui.Fcontents
+            case 5: dayContents = window.ui.Fcontents
             case 6: dayContents = window.ui.Gcontents
 
         #create a QSpacerItem to space-out highlight areas

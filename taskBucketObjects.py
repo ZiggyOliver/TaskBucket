@@ -71,7 +71,7 @@ class TaskBucket:
         self.sessionTimeEnd = sessionTimeEnd
 
 
-    def AddTaskBucketToDB(self):
+    def AddTaskBucketToDB(self, *connection):
         connection = sqlite3.connect("TaskBucket_Data.db")
         cursor = connection.cursor()
 
