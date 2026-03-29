@@ -186,9 +186,7 @@ def showWarning(warningText):
 
 @Slot()
 def CreateBucket():
-    print("bucketsInDB:", bucketsInDB)
     otherBuckets = bucketsInDB.copy()
-    print(otherBuckets)
     inputsAreValid = True
     warning = ""
     bucketName = window.ui.bucketNameEdit.text()

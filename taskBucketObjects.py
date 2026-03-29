@@ -48,15 +48,12 @@ class Bucket:
         self.startTime = startTime
         self.finishTime = finishTime
 
-    def AddBucketToDB(self):
-        connection = sqlite3.connect("TaskBucket_Data.db")
+    def AddBucketToDB(self, connection = sqlite3.connect("TaskBucket_Data.db")):
         cursor = connection.cursor()
-
         cursor.execute(f"""
         INSERT INTO Buckets (bucketType, startTime, finishTime)
         VALUES ("{self.bucketType}", {self.startTime}, {self.finishTime})
         """)
-        connection.commit()
 
 class TaskBucket:
     task = float("nan")
@@ -71,8 +68,7 @@ class TaskBucket:
         self.sessionTimeEnd = sessionTimeEnd
 
 
-    def AddTaskBucketToDB(self, *connection):
-        connection = sqlite3.connect("TaskBucket_Data.db")
+    def AddTaskBucketToDB(self, connection = sqlite3.connect("TaskBucket_Data.db")):
         cursor = connection.cursor()
 
         cursor.execute(f"""
@@ -80,4 +76,3 @@ class TaskBucket:
         VALUES ("{self.task}", {self.bucket}, {self.sessionTimeStart},
                  {self.sessionTimeEnd})
         """)
-        connection.commit()
