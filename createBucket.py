@@ -238,7 +238,11 @@ def CreateBucket():
             connection.rollback()
             break
         
-    if inputsAreValid: connection.commit() ; print("all ready buckets added"); return 1
+    if inputsAreValid:
+        connection.commit()
+        print("all ready buckets added")
+        window.close()
+        return 1
     return 0;
         
 

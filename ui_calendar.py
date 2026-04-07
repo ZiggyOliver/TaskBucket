@@ -15,18 +15,23 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QListView, QMainWindow, QMenuBar, QPushButton,
-    QScrollArea, QSizePolicy, QSpacerItem, QStatusBar,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QFrame, QHBoxLayout,
+    QLabel, QLayout, QListView, QMainWindow,
+    QMenuBar, QPushButton, QScrollArea, QSizePolicy,
+    QSpacerItem, QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1137, 681)
+        MainWindow.resize(1046, 559)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
+        self.centralwidget.setSizePolicy(sizePolicy)
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.widget = QWidget(self.centralwidget)
@@ -57,32 +62,41 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.uiButtonsArea)
 
-        self.listView = QListView(self.widget)
-        self.listView.setObjectName(u"listView")
-        self.listView.setMaximumSize(QSize(300, 16777215))
+        self.menuList = QListView(self.widget)
+        self.menuList.setObjectName(u"menuList")
+        self.menuList.setMaximumSize(QSize(300, 16777215))
 
-        self.verticalLayout_2.addWidget(self.listView)
+        self.verticalLayout_2.addWidget(self.menuList)
 
 
         self.horizontalLayout.addWidget(self.widget)
 
         self.scrollArea = QScrollArea(self.centralwidget)
         self.scrollArea.setObjectName(u"scrollArea")
+        sizePolicy.setHeightForWidth(self.scrollArea.sizePolicy().hasHeightForWidth())
+        self.scrollArea.setSizePolicy(sizePolicy)
+        self.scrollArea.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 861, 617))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 770, 495))
+        sizePolicy.setHeightForWidth(self.scrollAreaWidgetContents.sizePolicy().hasHeightForWidth())
+        self.scrollAreaWidgetContents.setSizePolicy(sizePolicy)
         self.horizontalLayout_2 = QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.weeklyCalendar = QWidget(self.scrollAreaWidgetContents)
         self.weeklyCalendar.setObjectName(u"weeklyCalendar")
+        sizePolicy.setHeightForWidth(self.weeklyCalendar.sizePolicy().hasHeightForWidth())
+        self.weeklyCalendar.setSizePolicy(sizePolicy)
         self.weeklyCalendar.setMinimumSize(QSize(120, 420))
         self.weeklyCalendar.setMaximumSize(QSize(630, 16777205))
         self.verticalLayout = QVBoxLayout(self.weeklyCalendar)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalSpacer_16 = QSpacerItem(20, 30, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
 
@@ -90,6 +104,8 @@ class Ui_MainWindow(object):
 
         self.dayLabels = QFrame(self.weeklyCalendar)
         self.dayLabels.setObjectName(u"dayLabels")
+        sizePolicy.setHeightForWidth(self.dayLabels.sizePolicy().hasHeightForWidth())
+        self.dayLabels.setSizePolicy(sizePolicy)
         self.dayLabels.setMaximumSize(QSize(16777215, 30))
         palette = QPalette()
         brush = QBrush(QColor(255, 255, 255, 255))
@@ -172,42 +188,58 @@ class Ui_MainWindow(object):
         self.dayLabels.setPalette(palette)
         self.dayLabels.setFrameShape(QFrame.Shape.StyledPanel)
         self.dayLabels.setFrameShadow(QFrame.Shadow.Raised)
+        self.dayLabels.setMidLineWidth(0)
         self.horizontalLayout_5 = QHBoxLayout(self.dayLabels)
         self.horizontalLayout_5.setSpacing(0)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.Alabel_2 = QLabel(self.dayLabels)
         self.Alabel_2.setObjectName(u"Alabel_2")
+        sizePolicy.setHeightForWidth(self.Alabel_2.sizePolicy().hasHeightForWidth())
+        self.Alabel_2.setSizePolicy(sizePolicy)
 
         self.horizontalLayout_5.addWidget(self.Alabel_2)
 
         self.Blabel_2 = QLabel(self.dayLabels)
         self.Blabel_2.setObjectName(u"Blabel_2")
+        sizePolicy.setHeightForWidth(self.Blabel_2.sizePolicy().hasHeightForWidth())
+        self.Blabel_2.setSizePolicy(sizePolicy)
 
         self.horizontalLayout_5.addWidget(self.Blabel_2)
 
         self.Glabel_2 = QLabel(self.dayLabels)
         self.Glabel_2.setObjectName(u"Glabel_2")
+        sizePolicy.setHeightForWidth(self.Glabel_2.sizePolicy().hasHeightForWidth())
+        self.Glabel_2.setSizePolicy(sizePolicy)
 
         self.horizontalLayout_5.addWidget(self.Glabel_2)
 
         self.Flabel_2 = QLabel(self.dayLabels)
         self.Flabel_2.setObjectName(u"Flabel_2")
+        sizePolicy.setHeightForWidth(self.Flabel_2.sizePolicy().hasHeightForWidth())
+        self.Flabel_2.setSizePolicy(sizePolicy)
 
         self.horizontalLayout_5.addWidget(self.Flabel_2)
 
         self.Elabel_2 = QLabel(self.dayLabels)
         self.Elabel_2.setObjectName(u"Elabel_2")
+        sizePolicy.setHeightForWidth(self.Elabel_2.sizePolicy().hasHeightForWidth())
+        self.Elabel_2.setSizePolicy(sizePolicy)
 
         self.horizontalLayout_5.addWidget(self.Elabel_2)
 
         self.Dlabel_2 = QLabel(self.dayLabels)
         self.Dlabel_2.setObjectName(u"Dlabel_2")
+        sizePolicy.setHeightForWidth(self.Dlabel_2.sizePolicy().hasHeightForWidth())
+        self.Dlabel_2.setSizePolicy(sizePolicy)
 
         self.horizontalLayout_5.addWidget(self.Dlabel_2)
 
         self.Clabel_2 = QLabel(self.dayLabels)
         self.Clabel_2.setObjectName(u"Clabel_2")
+        sizePolicy.setHeightForWidth(self.Clabel_2.sizePolicy().hasHeightForWidth())
+        self.Clabel_2.setSizePolicy(sizePolicy)
 
         self.horizontalLayout_5.addWidget(self.Clabel_2)
 
@@ -216,14 +248,19 @@ class Ui_MainWindow(object):
 
         self.days = QFrame(self.weeklyCalendar)
         self.days.setObjectName(u"days")
+        sizePolicy.setHeightForWidth(self.days.sizePolicy().hasHeightForWidth())
+        self.days.setSizePolicy(sizePolicy)
         self.days.setFrameShape(QFrame.Shape.StyledPanel)
         self.days.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_6 = QHBoxLayout(self.days)
         self.horizontalLayout_6.setSpacing(0)
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.horizontalLayout_6.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
         self.Aday_2 = QFrame(self.days)
         self.Aday_2.setObjectName(u"Aday_2")
+        sizePolicy.setHeightForWidth(self.Aday_2.sizePolicy().hasHeightForWidth())
+        self.Aday_2.setSizePolicy(sizePolicy)
         palette1 = QPalette()
         palette1.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette1.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -315,6 +352,8 @@ class Ui_MainWindow(object):
 
         self.Bday_2 = QFrame(self.days)
         self.Bday_2.setObjectName(u"Bday_2")
+        sizePolicy.setHeightForWidth(self.Bday_2.sizePolicy().hasHeightForWidth())
+        self.Bday_2.setSizePolicy(sizePolicy)
         palette2 = QPalette()
         palette2.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette2.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -406,6 +445,8 @@ class Ui_MainWindow(object):
 
         self.Cday_2 = QFrame(self.days)
         self.Cday_2.setObjectName(u"Cday_2")
+        sizePolicy.setHeightForWidth(self.Cday_2.sizePolicy().hasHeightForWidth())
+        self.Cday_2.setSizePolicy(sizePolicy)
         palette3 = QPalette()
         palette3.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette3.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -497,6 +538,8 @@ class Ui_MainWindow(object):
 
         self.Dday_2 = QFrame(self.days)
         self.Dday_2.setObjectName(u"Dday_2")
+        sizePolicy.setHeightForWidth(self.Dday_2.sizePolicy().hasHeightForWidth())
+        self.Dday_2.setSizePolicy(sizePolicy)
         palette4 = QPalette()
         palette4.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette4.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -588,6 +631,8 @@ class Ui_MainWindow(object):
 
         self.Eday_2 = QFrame(self.days)
         self.Eday_2.setObjectName(u"Eday_2")
+        sizePolicy.setHeightForWidth(self.Eday_2.sizePolicy().hasHeightForWidth())
+        self.Eday_2.setSizePolicy(sizePolicy)
         palette5 = QPalette()
         palette5.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette5.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -679,6 +724,8 @@ class Ui_MainWindow(object):
 
         self.Fday_2 = QFrame(self.days)
         self.Fday_2.setObjectName(u"Fday_2")
+        sizePolicy.setHeightForWidth(self.Fday_2.sizePolicy().hasHeightForWidth())
+        self.Fday_2.setSizePolicy(sizePolicy)
         palette6 = QPalette()
         palette6.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette6.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -770,6 +817,8 @@ class Ui_MainWindow(object):
 
         self.Gday_2 = QFrame(self.days)
         self.Gday_2.setObjectName(u"Gday_2")
+        sizePolicy.setHeightForWidth(self.Gday_2.sizePolicy().hasHeightForWidth())
+        self.Gday_2.setSizePolicy(sizePolicy)
         palette7 = QPalette()
         palette7.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush3)
         palette7.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush)
@@ -872,7 +921,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1137, 22))
+        self.menubar.setGeometry(QRect(0, 0, 1046, 22))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
