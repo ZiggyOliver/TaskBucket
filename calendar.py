@@ -3,29 +3,57 @@ import sys
 from taskBucketObjects import Task, Bucket, TaskBucket
 from PySide6.QtWidgets import (QApplication, QMainWindow, QSpacerItem, QWidget, QSizePolicy)
 from PySide6.QtGui import QPalette, QColor as QColour
-from PySide6.QtCore import QFile
+from PySide6.QtCore import QFile, Signal, Slot
 from ui_calendar import Ui_MainWindow
+from CalendarBucketElement import CalendarBucketElement
 
 class MainWindow(QMainWindow):
+    resized = Signal()
     def __init__(self):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.resized.emit()
+
+    def resizeEvent(self, event):
+        self.resized.emit()
+        return super(MainWindow, self).resizeEvent(event)
+    
 
 app = QApplication(sys.argv)
 window = MainWindow()
+
+#resize days
+@Slot()
+def resizeDays():
+    totalSize = window.ui.scrollArea.size().width() - 10
+    if totalSize < 500: totalSize = 500
+    daysDisplayed = [
+        window.ui.Aday_2,
+        window.ui.Bday_2,
+        window.ui.Cday_2,
+        window.ui.Dday_2,
+        window.ui.Eday_2,
+        window.ui.Fday_2,
+        window.ui.Gday_2
+    ]
+    for dayDisplayed in daysDisplayed:
+        dayDisplayed.setFixedWidth(totalSize / 7)
+
+window.resized.connect(resizeDays)
 
 #fetch from database
 connection = sqlite3.connect("TaskBucket_Data.db")
 cursor = connection.cursor()
 cursor.execute("""
-    SELECT bucketID, bucketType, startTime, finishTime
+    SELECT bucketID, bucketType, startTime, finishTime, bucketColour
     FROM Buckets
 """)
 buckets = []
 for row in cursor.fetchall():
     newBucketObject = Bucket(row[1], row[2], row[3])
     newBucketObject.setID(row[0])
+    newBucketObject.setColour(row[4])
     buckets.append(newBucketObject)
 
 highlightWidgetsParents = {}
@@ -69,7 +97,7 @@ def HighlightBucketsOnCalendar():
         window.ui.Gcontents: 0
     }
 
-    #sort bucketTimes by startTimeto prevent strangeness
+    #sort bucketTimes by startTime to prevent strangeness
     """
     bucketTimes.sort(key = lambda bucketUiElement:
                      secondsSinceStartOfWeek(bucketUiElement.startDay.currentText(),
@@ -96,14 +124,18 @@ def HighlightBucketsOnCalendar():
             case 6: dayContents = window.ui.Gcontents
 
         #create a QSpacerItem to space-out buckets
-        spacerHeight = ((startTime % 86400) - lastEndTime[dayContents]) * timeLenFactor
+        spacerHeight = ((startTime % 86400) - lastEndTime[dayContents] - 20) * timeLenFactor
+                                                                            #-20 is for name and time
         newSpacer = QSpacerItem(2,spacerHeight, vData=QSizePolicy.Policy.Fixed)
         dayContents.layout().addSpacerItem(newSpacer)
         calendarSpacersParents[newSpacer] = dayContents
 
         #create the bucket itself
         widgetHeight = (endTime - startTime) * timeLenFactor
-        newWidget = QWidget()
+        newWidget = CalendarBucketElement(bucket.colour)
+        print(bucket.bucketType, bucket.colour)
+        newWidget.populateWithTasks(bucket.bucketID, startTime, endTime, widgetHeight + 20)#CBE
+        newWidget.setNameAndTime(bucket)
         newWidget.setFixedHeight(widgetHeight)
         newWidget.setAutoFillBackground(True)
         highlightPalette = QPalette()
@@ -125,7 +157,7 @@ def HighlightBucketsOnCalendar():
 
         print(highlightWidgetsParents, "\n =======\n", calendarSpacersParents)
         '''
-
+    resizeDays()
         
 if __name__ == "__main__":
     window.ui.pushButton.clicked.connect(HighlightBucketsOnCalendar)

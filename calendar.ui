@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1046</width>
-    <height>559</height>
+    <width>928</width>
+    <height>719</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -95,8 +95,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>770</width>
-         <height>495</height>
+         <width>638</width>
+         <height>1509</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -787,10 +787,16 @@
            <item>
             <widget class="QFrame" name="days">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>1460</height>
+              </size>
              </property>
              <property name="frameShape">
               <enum>QFrame::Shape::StyledPanel</enum>
@@ -803,7 +809,7 @@
                <number>0</number>
               </property>
               <property name="sizeConstraint">
-               <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
+               <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
               </property>
               <property name="leftMargin">
                <number>0</number>
@@ -820,7 +826,7 @@
               <item>
                <widget class="QFrame" name="Aday_2">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                 <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -1324,6 +1330,12 @@
                  </property>
                  <item>
                   <widget class="QWidget" name="Acontents" native="true">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <layout class="QVBoxLayout" name="verticalLayout_19">
                     <property name="spacing">
                      <number>0</number>
@@ -1345,6 +1357,12 @@
                  </item>
                  <item>
                   <spacer name="verticalSpacer_9">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="orientation">
                     <enum>Qt::Orientation::Vertical</enum>
                    </property>
@@ -1362,7 +1380,7 @@
               <item>
                <widget class="QFrame" name="Bday_2">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                 <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -1866,6 +1884,12 @@
                  </property>
                  <item>
                   <widget class="QWidget" name="Bcontents" native="true">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <layout class="QVBoxLayout" name="verticalLayout_4">
                     <property name="spacing">
                      <number>0</number>
@@ -1887,6 +1911,12 @@
                  </item>
                  <item>
                   <spacer name="Bspacer">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="orientation">
                     <enum>Qt::Orientation::Vertical</enum>
                    </property>
@@ -1904,7 +1934,7 @@
               <item>
                <widget class="QFrame" name="Cday_2">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                 <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -2408,6 +2438,12 @@
                  </property>
                  <item>
                   <widget class="QWidget" name="Ccontents" native="true">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <layout class="QVBoxLayout" name="verticalLayout_5">
                     <property name="spacing">
                      <number>0</number>
@@ -2429,6 +2465,12 @@
                  </item>
                  <item>
                   <spacer name="Cspacer">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="orientation">
                     <enum>Qt::Orientation::Vertical</enum>
                    </property>
@@ -2446,7 +2488,7 @@
               <item>
                <widget class="QFrame" name="Dday_2">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                 <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -2950,6 +2992,12 @@
                  </property>
                  <item>
                   <widget class="QWidget" name="Dcontents" native="true">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <layout class="QVBoxLayout" name="verticalLayout_25">
                     <property name="spacing">
                      <number>0</number>
@@ -2971,6 +3019,12 @@
                  </item>
                  <item>
                   <spacer name="verticalSpacer_12">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="orientation">
                     <enum>Qt::Orientation::Vertical</enum>
                    </property>
@@ -2988,7 +3042,7 @@
               <item>
                <widget class="QFrame" name="Eday_2">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                 <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -3492,6 +3546,12 @@
                  </property>
                  <item>
                   <widget class="QWidget" name="Econtents" native="true">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <layout class="QVBoxLayout" name="verticalLayout_27">
                     <property name="spacing">
                      <number>0</number>
@@ -3513,6 +3573,12 @@
                  </item>
                  <item>
                   <spacer name="Espacer">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="orientation">
                     <enum>Qt::Orientation::Vertical</enum>
                    </property>
@@ -3530,7 +3596,7 @@
               <item>
                <widget class="QFrame" name="Fday_2">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                 <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -4034,6 +4100,12 @@
                  </property>
                  <item>
                   <widget class="QWidget" name="Fcontents" native="true">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <layout class="QVBoxLayout" name="verticalLayout_29">
                     <property name="spacing">
                      <number>0</number>
@@ -4055,6 +4127,12 @@
                  </item>
                  <item>
                   <spacer name="Fspacer">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="orientation">
                     <enum>Qt::Orientation::Vertical</enum>
                    </property>
@@ -4072,7 +4150,7 @@
               <item>
                <widget class="QFrame" name="Gday_2">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                 <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -4576,6 +4654,12 @@
                  </property>
                  <item>
                   <widget class="QWidget" name="Gcontents" native="true">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <layout class="QVBoxLayout" name="verticalLayout_31">
                     <property name="spacing">
                      <number>0</number>
@@ -4628,7 +4712,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1046</width>
+     <width>928</width>
      <height>22</height>
     </rect>
    </property>

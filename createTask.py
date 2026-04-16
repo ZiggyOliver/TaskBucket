@@ -5,7 +5,6 @@ from PySide6.QtCore import Qt, QFile, Signal, Slot
 from ui_createTask import Ui_Form
 from taskBucketObjects import Task
 import epoch
-import createTask
 import sqlite3
 
 
@@ -16,7 +15,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
 if __name__ == "__main__" or True:
-    app = QApplication(sys.argv)
+    app = QApplication.instance()
     window = MainWindow()
     warningShown = False
 

@@ -24,7 +24,8 @@ def GenerateDatabase():
         bucketID INTEGER PRIMARY KEY,
         bucketType TEXT,
         startTime INTEGER,
-        finishTime INTEGER)
+        finishTime INTEGER,
+        bucketColour TEXT)
     """)
 
     #TaskBucket table Generation
@@ -36,5 +37,4 @@ def GenerateDatabase():
         sessionTimeStart INTEGER,
         sessionTimeEnd INTEGER)
     """)
-
 

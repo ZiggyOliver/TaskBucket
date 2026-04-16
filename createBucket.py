@@ -16,7 +16,6 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        
 app = QApplication(sys.argv)
 window = MainWindow()
 addBucketsArea = window.ui.AddBucketsArea
@@ -147,7 +146,7 @@ def RemoveBucketTime():
     if len(bucketTimes) == 0: return 0
     lastBucketTime = bucketTimes.pop(-1)
     addBucketsArea.layout().removeWidget(lastBucketTime)
-
+    
 #connections for Add and Remove Bucket Time Buttons
 addNewBucketTimeElementButton  = window.ui.AddBucketTimeButton
 addNewBucketTimeElementButton.clicked.connect(AddBucketTime)
@@ -156,6 +155,21 @@ addNewBucketTimeElementButton.clicked.connect(HighlightBucketsOnCalendar)
 removeLastBucketTimeButton = window.ui.RemoveBucketTimeButton
 removeLastBucketTimeButton.clicked.connect(RemoveBucketTime)
 removeLastBucketTimeButton.clicked.connect(HighlightBucketsOnCalendar)
+
+@Slot()
+def UpdateSampleColour():
+    colour = QColour(
+        window.ui.redSpinBox.value(),
+        window.ui.greenSpinBox.value(),
+        window.ui.blueSpinBox.value()
+    )
+    palette = QPalette(colour, colour) # This is and ought to be.
+    window.ui.sampleColour.setPalette(palette)
+
+#connections for Update Sample Colour to RGB spin boxes
+window.ui.redSpinBox.valueChanged.connect(UpdateSampleColour)
+window.ui.greenSpinBox.valueChanged.connect(UpdateSampleColour)
+window.ui.blueSpinBox.valueChanged.connect(UpdateSampleColour)
 
 def secondsSinceStartOfWeek(day, QTimeObject):
     match day:
@@ -199,9 +213,13 @@ def CreateBucket():
                                             BucketTimeUiElement.startTime.time())
         endTime = secondsSinceStartOfWeek(BucketTimeUiElement.finishDay.currentText(),
                                           BucketTimeUiElement.finishTime.time())
-
-        # inputvalidation - ensuring this won't be inside another bucket
+        bucketColour = str(window.ui.redSpinBox.value()).zfill(3) + \
+                       str(window.ui.greenSpinBox.value()).zfill(3) + \
+                       str(window.ui.blueSpinBox.value()).zfill(3)
+                           
+        # inputvalidation
         for bucket in otherBuckets:
+            # - ensuring this won't be inside another bucket
             if (
                     startTime >= bucket[0] and startTime <= bucket[1]
                     or
@@ -210,8 +228,8 @@ def CreateBucket():
                 inputsAreValid = False
                 warning += \
                 "Bucket could not be created because it would have been inside another bucket\n"
-        # - ensuring this won't encase another bucket
-        for bucket in otherBuckets:
+                
+            # - ensuring this won't encase another bucket
             if (
                     bucket[0] >= startTime and bucket[0] <= endTime
                     or
@@ -229,6 +247,7 @@ def CreateBucket():
         #add bucket to database if all is well
         if inputsAreValid:
             bucketToAdd = Bucket(bucketName, startTime, endTime)
+            bucketToAdd.setColour(bucketColour)
             bucketToAdd.AddBucketToDB(connection = connection)
             print("bucket ready to be added")
             otherBuckets.append((startTime, endTime))

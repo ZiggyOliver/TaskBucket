@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'createBucket.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.10.1
+## Created by: Qt User Interface Compiler version 6.10.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -18,14 +18,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QAbstractButton, QApplication, QDialogButtonBox, QFormLayout,
     QFrame, QHBoxLayout, QLabel, QLineEdit,
     QMainWindow, QMenuBar, QPushButton, QScrollArea,
-    QSizePolicy, QSpacerItem, QStatusBar, QVBoxLayout,
-    QWidget)
+    QSizePolicy, QSpacerItem, QSpinBox, QStatusBar,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1089, 585)
+        MainWindow.resize(1047, 617)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.formLayout = QFormLayout(self.centralwidget)
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 517, 418))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 502, 418))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.AddBucketsArea = QWidget(self.scrollAreaWidgetContents_2)
@@ -890,12 +890,74 @@ class Ui_MainWindow(object):
         self.buttonBox.setOrientation(Qt.Orientation.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Ok)
 
-        self.formLayout.setWidget(3, QFormLayout.ItemRole.FieldRole, self.buttonBox)
+        self.formLayout.setWidget(4, QFormLayout.ItemRole.FieldRole, self.buttonBox)
+
+        self.label_3 = QLabel(self.centralwidget)
+        self.label_3.setObjectName(u"label_3")
+
+        self.formLayout.setWidget(3, QFormLayout.ItemRole.LabelRole, self.label_3)
+
+        self.colourSelect = QWidget(self.centralwidget)
+        self.colourSelect.setObjectName(u"colourSelect")
+        self.horizontalLayout = QHBoxLayout(self.colourSelect)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 50, 0)
+        self.label_4 = QLabel(self.colourSelect)
+        self.label_4.setObjectName(u"label_4")
+
+        self.horizontalLayout.addWidget(self.label_4)
+
+        self.redSpinBox = QSpinBox(self.colourSelect)
+        self.redSpinBox.setObjectName(u"redSpinBox")
+        self.redSpinBox.setMaximum(255)
+
+        self.horizontalLayout.addWidget(self.redSpinBox)
+
+        self.label_5 = QLabel(self.colourSelect)
+        self.label_5.setObjectName(u"label_5")
+
+        self.horizontalLayout.addWidget(self.label_5)
+
+        self.greenSpinBox = QSpinBox(self.colourSelect)
+        self.greenSpinBox.setObjectName(u"greenSpinBox")
+        self.greenSpinBox.setMaximum(255)
+
+        self.horizontalLayout.addWidget(self.greenSpinBox)
+
+        self.label_6 = QLabel(self.colourSelect)
+        self.label_6.setObjectName(u"label_6")
+
+        self.horizontalLayout.addWidget(self.label_6)
+
+        self.blueSpinBox = QSpinBox(self.colourSelect)
+        self.blueSpinBox.setObjectName(u"blueSpinBox")
+        self.blueSpinBox.setMaximum(255)
+
+        self.horizontalLayout.addWidget(self.blueSpinBox)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer)
+
+        self.sampleColour = QWidget(self.colourSelect)
+        self.sampleColour.setObjectName(u"sampleColour")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.sampleColour.sizePolicy().hasHeightForWidth())
+        self.sampleColour.setSizePolicy(sizePolicy)
+        self.sampleColour.setMinimumSize(QSize(40, 0))
+        self.sampleColour.setAutoFillBackground(True)
+
+        self.horizontalLayout.addWidget(self.sampleColour)
+
+
+        self.formLayout.setWidget(3, QFormLayout.ItemRole.FieldRole, self.colourSelect)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1089, 22))
+        self.menubar.setGeometry(QRect(0, 0, 1047, 22))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -919,5 +981,9 @@ class Ui_MainWindow(object):
         self.Elabel_2.setText(QCoreApplication.translate("MainWindow", u"Friday", None))
         self.Dlabel_2.setText(QCoreApplication.translate("MainWindow", u"Saturday", None))
         self.Clabel_2.setText(QCoreApplication.translate("MainWindow", u"Sunday", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Colour", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Red", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Green", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Blue", None))
     # retranslateUi
 
