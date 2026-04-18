@@ -21,6 +21,8 @@ class Task:
         self.estimatedTime = estimatedTime
         self.description = description
         self.maximumSessionTime = maximumSessionTime
+
+    def setID(self, ID): self.taskID = ID
         
 
     def AddTaskToDB(self):
@@ -74,6 +76,7 @@ class TaskBucket:
 
 
     def AddTaskBucketToDB(self, connection = sqlite3.connect("TaskBucket_Data.db")):
+        print("addTaskBUcketToDBCalled")
         cursor = connection.cursor()
 
         cursor.execute(f"""

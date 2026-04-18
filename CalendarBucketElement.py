@@ -70,9 +70,10 @@ class CalendarBucketElement(QWidget, Ui_Form):
             #create the widget for the task itself
             widgetHeight = (endTime - startTime) * timeLenFactor
             newWidget = CalendarTaskBucketElement()
-            #newWidget.setNameAndTime(taskBucket)
+            newWidget.setNameAndTime(taskBucket)
             newWidget.setFixedHeight(widgetHeight)
             newWidget.setAutoFillBackground(True)
+            newWidget.setColour(self.colour)
             highlightPalette = QPalette()
             highlightPalette.setColor(QPalette.ColorRole.Window, QColour(0,255,0))
             newWidget.setPalette(highlightPalette)
@@ -95,10 +96,3 @@ class CalendarBucketElement(QWidget, Ui_Form):
         
         
         self.bucketTime.setText(startTimeString + " — " + endTimeString)
-
-        
-
-
-            
-        
-        

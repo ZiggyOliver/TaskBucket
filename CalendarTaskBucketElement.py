@@ -22,9 +22,10 @@ class CalendarTaskBucketElement(QWidget, Ui_Form):
         connection = sqlite3.connect("TaskBucket_Data.db")
         cursor = connection.cursor()
         cursor.execute(f"""
-        SELECT name
-        FROM Tasks
-        WHERE taskID == {taskBucket.task}
+            SELECT name
+            FROM Tasks
+            WHERE taskID == {taskBucket.task}
+
         """)
         self.taskName = cursor.fetchone()
 
@@ -38,9 +39,15 @@ class CalendarTaskBucketElement(QWidget, Ui_Form):
 
         self.taskTime.setText(startTimeString + " — " + endTimeString)
 
-    def setColour():
-        return None
-        
+    def setColour(self, colourAsRgbTuple):
+        print("setColourCalled")
+        print(colourAsRgbTuple)
+        self.taskBucket.setPalette(QPalette(QColour(),QColour(
+            colourAsRgbTuple[0],
+            colourAsRgbTuple[1],
+            colourAsRgbTuple[2],
+            a = 255
+        )))
 
 
         

@@ -96,7 +96,7 @@
          <x>0</x>
          <y>0</y>
          <width>638</width>
-         <height>1509</height>
+         <height>3049</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -795,7 +795,7 @@
              <property name="minimumSize">
               <size>
                <width>0</width>
-               <height>1460</height>
+               <height>3000</height>
               </size>
              </property>
              <property name="frameShape">

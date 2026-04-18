@@ -6,6 +6,7 @@ from PySide6.QtGui import QPalette, QColor as QColour
 from PySide6.QtCore import QFile, Signal, Slot
 from ui_calendar import Ui_MainWindow
 from CalendarBucketElement import CalendarBucketElement
+import TaskArrangementAlgorithm
 
 class MainWindow(QMainWindow):
     resized = Signal()
@@ -19,9 +20,12 @@ class MainWindow(QMainWindow):
         self.resized.emit()
         return super(MainWindow, self).resizeEvent(event)
     
-
-app = QApplication(sys.argv)
+if not QApplication.instance():
+    app = QApplication(sys.argv)
+else:
+    app = QApplication.instance()
 window = MainWindow()
+TaskArrangementAlgorithm.ArrangeUnarrangedTasks()
 
 #resize days
 @Slot()
@@ -133,7 +137,7 @@ def HighlightBucketsOnCalendar():
         #create the bucket itself
         widgetHeight = (endTime - startTime) * timeLenFactor
         newWidget = CalendarBucketElement(bucket.colour)
-        print(bucket.bucketType, bucket.colour)
+        #print(bucket.bucketType, bucket.colour)
         newWidget.populateWithTasks(bucket.bucketID, startTime, endTime, widgetHeight + 20)#CBE
         newWidget.setNameAndTime(bucket)
         newWidget.setFixedHeight(widgetHeight)

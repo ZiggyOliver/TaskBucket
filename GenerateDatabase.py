@@ -35,6 +35,7 @@ def GenerateDatabase():
         taskID INTEGER REFERENCES Tasks (taskID),
         bucketID INTEGER REFERENCES Buckets (bucketID),
         sessionTimeStart INTEGER,
-        sessionTimeEnd INTEGER)
+        sessionTimeEnd INTEGER,
+        epochWeek INTEGER)
     """)
 

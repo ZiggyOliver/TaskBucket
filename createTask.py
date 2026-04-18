@@ -16,6 +16,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__" or True:
     app = QApplication.instance()
+    if app == None: app = QApplication()
     window = MainWindow()
     warningShown = False
 

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'calendar.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.10.2
+## Created by: Qt User Interface Compiler version 6.10.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -79,7 +79,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 638, 1509))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 638, 3049))
         sizePolicy.setHeightForWidth(self.scrollAreaWidgetContents.sizePolicy().hasHeightForWidth())
         self.scrollAreaWidgetContents.setSizePolicy(sizePolicy)
         self.horizontalLayout_2 = QHBoxLayout(self.scrollAreaWidgetContents)
@@ -253,7 +253,7 @@ class Ui_MainWindow(object):
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.days.sizePolicy().hasHeightForWidth())
         self.days.setSizePolicy(sizePolicy1)
-        self.days.setMinimumSize(QSize(0, 1460))
+        self.days.setMinimumSize(QSize(0, 3000))
         self.days.setFrameShape(QFrame.Shape.StyledPanel)
         self.days.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_6 = QHBoxLayout(self.days)
