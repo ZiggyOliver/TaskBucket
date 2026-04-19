@@ -1,10 +1,45 @@
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow
-from PySide6.QtCore import QFile
-from uiwidget_bucketTime import BucketTimeElement
+from createBucket import CreateBucketWindow
+
+from PySide6.QtWidgets import (
+    QApplication,
+    QLabel,
+    QMainWindow,
+    QPushButton,
+    QVBoxLayout,
+    QWidget,
+)
+
+
+class AnotherWindow(QWidget):
+    """
+    This "window" is a QWidget. If it has no parent, it
+    will appear as a free-floating window as we want.
+    """
+
+    def __init__(self):
+        super().__init__()
+        layout = QVBoxLayout()
+        self.label = QLabel("Another Window")
+        layout.addWidget(self.label)
+        self.setLayout(layout)
+        print("second window __init__ called")
+
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.button = QPushButton("Push for Window")
+        self.button.clicked.connect(self.show_new_window)
+        self.setCentralWidget(self.button)
+
+    def show_new_window(self, checked):
+        self.w = CreateBucketWindow()
+        self.w.show()
+        self.w.setupConnections()
+
 
 app = QApplication(sys.argv)
-bucketTimeElement = BucketTimeElement()
-bucketTimeElement.show()
-
+window = MainWindow()
+window.show()
 app.exec()

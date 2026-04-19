@@ -8,44 +8,57 @@ import epoch
 import sqlite3
 
 
-class MainWindow(QMainWindow):
+class CreateTaskWindow(QMainWindow):
     def __init__(self):
-        super(MainWindow, self).__init__()
+        super(CreateTaskWindow, self).__init__()
         self.ui = Ui_Form()
         self.ui.setupUi(self)
 
-if __name__ == "__main__" or True:
-    app = QApplication.instance()
-    if app == None: app = QApplication()
-    window = MainWindow()
-    warningShown = False
+        self.warningShown = False
 
-    def showWarning(warningText):
-        global warningShown
-        if not warningShown:
+        #setup TaskBucketTypeSelector to display bucket types
+        connection = sqlite3.connect("TaskBucket_Data.db")
+        cursor = connection.cursor()
+
+        cursor.execute("""
+            SELECT bucketType
+            FROM Buckets
+            ORDER BY bucketType
+        """)
+        self.bucketTypes = []
+        for bucketType in cursor.fetchall():
+            if bucketType[0] in self.bucketTypes: continue
+            self.bucketTypes.append(bucketType[0])
+        
+        self.ui.taskBucketTypeSelector.addItems(self.bucketTypes)
+
+
+    def showWarning(self, warningText):
+        if not self.warningShown:
             global warningLabel
             warningLabel = QLabel()
-            window.ui.formLayout.addWidget(warningLabel)
+            self.ui.formLayout.addWidget(warningLabel)
             warningLabel.setText(warningText)
-            warningShown = True
+            self.warningShown = True
         else:
             warningLabel.setText(warningText)
         
 
     @Slot()
-    def CreateTask():
-        taskName = window.ui.taskNameEdit.toPlainText()
-        compatibleBucketType = window.ui.taskBucketTypeSelector.currentText()
-        taskDeadline = window.ui.taskDeadlineEdit.dateTime().toSecsSinceEpoch()
-        estimatedTime = window.ui.estTaskTime.time().msecsSinceStartOfDay() // 1000
-        description = window.ui.taskDescriptionEdit.toPlainText()
-        maxSessionTime = window.ui.maxSessionTimeEdit.time().msecsSinceStartOfDay() // 1000
-        status = window.ui.taskStatusEdit.toPlainText()
+    def CreateTask(self):
+        taskName = self.ui.taskNameEdit.toPlainText()
+        compatibleBucketType = self.ui.taskBucketTypeSelector.currentText()
+        taskDeadline = self.ui.taskDeadlineEdit.dateTime().toSecsSinceEpoch()
+        estimatedTime = self.ui.estTaskTime.time().msecsSinceStartOfDay() // 1000
+        description = self.ui.taskDescriptionEdit.toPlainText()
+        maxSessionTime = self.ui.maxSessionTimeEdit.time().msecsSinceStartOfDay() // 1000
+        if maxSessionTime == 0: maxSessionTime = estimatedTime
+        status = self.ui.taskStatusEdit.toPlainText()
         recursion = ""
-        if window.ui.dailyRecRadio.isChecked(): recursion = "daily"
-        elif window.ui.weeklyRecRadio.isChecked(): recursion = "weekly"
-        elif window.ui.monthlyRecRadio.isChecked(): recursion = "monthly"
-        elif window.ui.yearlyRecRadio.isChecked(): recursion = "yearly"
+        if self.ui.dailyRecRadio.isChecked(): recursion = "daily"
+        elif self.ui.weeklyRecRadio.isChecked(): recursion = "weekly"
+        elif self.ui.monthlyRecRadio.isChecked(): recursion = "monthly"
+        elif self.ui.yearlyRecRadio.isChecked(): recursion = "yearly"
 
         #input validation
         inputsAreValid = True
@@ -62,30 +75,28 @@ if __name__ == "__main__" or True:
             taskToCreate = Task(taskName, compatibleBucketType, taskDeadline, estimatedTime,
                                 description, maxSessionTime, status, recursion)
             taskToCreate.AddTaskToDB()
-            window.close()
+            self.close()
         else:
             print(warning)
-            showWarning(warning)
+            self.showWarning(warning)
 
-    #setup TaskBucketTypeSelector to display bucket types
-    connection = sqlite3.connect("TaskBucket_Data.db")
-    cursor = connection.cursor()
 
-    cursor.execute("""
-        SELECT bucketType
-        FROM Buckets
-        ORDER BY bucketType
-    """)
 
-    bucketTypes = []
-    for bucketType in cursor.fetchall(): bucketTypes.append(bucketType[0])
-    window.ui.taskBucketTypeSelector.addItems(bucketTypes)
+    def setupConnections(self):       
+        okButton = self.ui.buttonBox.button(QDialogueButtonBox.Ok)
+        okButton.clicked.connect(self.CreateTask)
 
-    okButton = window.ui.buttonBox.button(QDialogueButtonBox.Ok)
-    okButton.clicked.connect(CreateTask)
-
-    cancelButton = window.ui.buttonBox.button(QDialogueButtonBox.Cancel)
-    cancelButton.clicked.connect(window.close)
+        cancelButton = self.ui.buttonBox.button(QDialogueButtonBox.Cancel)
+        cancelButton.clicked.connect(self.close)
     
+
+if __name__ == "__main__":
+    app = QApplication.instance()
+    if app == None: app = QApplication()
+    
+    window = CreateTaskWindow()
     window.show()
-    sys.exit(app.exec())
+    window.setupConnections()
+    
+    try: sys.exit(app.exec())
+    except: app.beep()

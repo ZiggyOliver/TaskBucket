@@ -8,163 +8,167 @@ from ui_calendar import Ui_MainWindow
 from CalendarBucketElement import CalendarBucketElement
 import TaskArrangementAlgorithm
 
-class MainWindow(QMainWindow):
+class CalendarWindow(QMainWindow):
     resized = Signal()
     def __init__(self):
-        super(MainWindow, self).__init__()
+        super(CalendarWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.resized.emit()
 
+        TaskArrangementAlgorithm.ArrangeUnarrangedTasks()
+
+        #fetch from database
+        self.connection = sqlite3.connect("TaskBucket_Data.db")
+        self.cursor = self.connection.cursor()
+        self.cursor.execute("""
+            SELECT bucketID, bucketType, startTime, finishTime, bucketColour
+            FROM Buckets
+        """)
+        self.buckets = []
+        for row in self.cursor.fetchall():
+            newBucketObject = Bucket(row[1], row[2], row[3])
+            newBucketObject.setID(row[0])
+            newBucketObject.setColour(row[4])
+            self.buckets.append(newBucketObject)
+
+        self.highlightWidgetsParents = {}
+        self.calendarSpacersParents = {}
+
+
     def resizeEvent(self, event):
         self.resized.emit()
-        return super(MainWindow, self).resizeEvent(event)
+        return super(CalendarWindow, self).resizeEvent(event)
     
-if not QApplication.instance():
-    app = QApplication(sys.argv)
-else:
-    app = QApplication.instance()
-window = MainWindow()
-TaskArrangementAlgorithm.ArrangeUnarrangedTasks()
 
-#resize days
-@Slot()
-def resizeDays():
-    totalSize = window.ui.scrollArea.size().width() - 10
-    if totalSize < 500: totalSize = 500
-    daysDisplayed = [
-        window.ui.Aday_2,
-        window.ui.Bday_2,
-        window.ui.Cday_2,
-        window.ui.Dday_2,
-        window.ui.Eday_2,
-        window.ui.Fday_2,
-        window.ui.Gday_2
-    ]
-    for dayDisplayed in daysDisplayed:
-        dayDisplayed.setFixedWidth(totalSize / 7)
 
-window.resized.connect(resizeDays)
+    @Slot()
+    def resizeDays(self):
+        totalSize = self.ui.scrollArea.size().width() - 10
+        if totalSize < 500: totalSize = 500
+        daysDisplayed = [
+            self.ui.Aday_2,
+            self.ui.Bday_2,
+            self.ui.Cday_2,
+            self.ui.Dday_2,
+            self.ui.Eday_2,
+            self.ui.Fday_2,
+            self.ui.Gday_2
+        ]
+        for dayDisplayed in daysDisplayed:
+            dayDisplayed.setFixedWidth(totalSize / 7)
 
-#fetch from database
-connection = sqlite3.connect("TaskBucket_Data.db")
-cursor = connection.cursor()
-cursor.execute("""
-    SELECT bucketID, bucketType, startTime, finishTime, bucketColour
-    FROM Buckets
-""")
-buckets = []
-for row in cursor.fetchall():
-    newBucketObject = Bucket(row[1], row[2], row[3])
-    newBucketObject.setID(row[0])
-    newBucketObject.setColour(row[4])
-    buckets.append(newBucketObject)
 
-highlightWidgetsParents = {}
-calendarSpacersParents = {}
 
-def HighlightBucketsOnCalendar():
-    #print("HighlightBucketsOnCalendarCalled")
+    def HighlightBucketsOnCalendar(self):
+        #print("HighlightBucketsOnCalendarCalled")
 
-    #Remove All Previous Highlights
-    
-        #For Widgets
-    widgetDeleteList = []
-    for widget in highlightWidgetsParents.keys(): widgetDeleteList.append(widget)
-    for widget in widgetDeleteList:
-        #print("delete widget called")
-        widget.hide()
-        #dayContents.layout().removeWidget(widget)
-        widget.destroy()
-        highlightWidgetsParents.pop(widget)
-        del widget
+        #Remove All Previous Highlights
 
-        #For Spacers
-    spacerDeleteList = []
-    for spacer in calendarSpacersParents.keys():
-        spacerDeleteList.append(spacer)
-        calendarSpacersParents[spacer].layout().removeItem(spacer)
-    for spacer in spacerDeleteList:
-        #print("delete spacer called")
-        #dayContents.layout().removeItem(spacer)
-        calendarSpacersParents.pop(spacer)
-        del spacer
+            #For Widgets
+        widgetDeleteList = []
+        for widget in self.highlightWidgetsParents.keys(): widgetDeleteList.append(widget)
+        for widget in widgetDeleteList:
+            #print("delete widget called")
+            widget.hide()
+            #dayContents.layout().removeWidget(widget)
+            widget.destroy()
+            self.highlightWidgetsParents.pop(widget)
+            del widget
 
-    #keep track of when the last item in each day ends
-    lastEndTime = {
-        window.ui.Acontents: 0,
-        window.ui.Bcontents: 0,
-        window.ui.Ccontents: 0,
-        window.ui.Dcontents: 0,
-        window.ui.Econtents: 0,
-        window.ui.Fcontents: 0,
-        window.ui.Gcontents: 0
-    }
+            #For Spacers
+        spacerDeleteList = []
+        for spacer in self.calendarSpacersParents.keys():
+            spacerDeleteList.append(spacer)
+            self.calendarSpacersParents[spacer].layout().removeItem(spacer)
+        for spacer in spacerDeleteList:
+            #print("delete spacer called")
+            #dayContents.layout().removeItem(spacer)
+            self.calendarSpacersParents.pop(spacer)
+            del spacer
 
-    #sort bucketTimes by startTime to prevent strangeness
-    """
-    bucketTimes.sort(key = lambda bucketUiElement:
-                     secondsSinceStartOfWeek(bucketUiElement.startDay.currentText(),
-                                             bucketUiElement.startTime.time())
-    """ #no longer needed as Buckets will all be sorted when fetched
+        #keep track of when the last item in each day ends
+        lastEndTime = {
+            self.ui.Acontents: 0,
+            self.ui.Bcontents: 0,
+            self.ui.Ccontents: 0,
+            self.ui.Dcontents: 0,
+            self.ui.Econtents: 0,
+            self.ui.Fcontents: 0,
+            self.ui.Gcontents: 0
+        }
 
-    #Add new spacers & widgets for each BucketTimeElement
-    for bucket in buckets:      
-        startTime = bucket.startTime
-        endTime = bucket.finishTime
+        #sort bucketTimes by startTime to prevent strangeness
+        """
+        bucketTimes.sort(key = lambda bucketUiElement:
+                         secondsSinceStartOfWeek(bucketUiElement.startDay.currentText(),
+                                                 bucketUiElement.startTime.time())
+        """ #no longer needed as Self.Buckets will all be sorted when fetched
 
-        if (endTime - startTime) <= 0: continue
+        #Add new spacers & widgets for each BucketTimeElement
+        for bucket in self.buckets:      
+            startTime = bucket.startTime
+            endTime = bucket.finishTime
 
-        #find correct day UI element
-        daySize = window.ui.days.frameSize().height()
-        timeLenFactor = (daySize / 86400)
-        match startTime // 86400:
-            case 0: dayContents = window.ui.Acontents
-            case 1: dayContents = window.ui.Bcontents
-            case 2: dayContents = window.ui.Ccontents
-            case 3: dayContents = window.ui.Dcontents
-            case 4: dayContents = window.ui.Econtents
-            case 5: dayContents = window.ui.Fcontents
-            case 6: dayContents = window.ui.Gcontents
+            if (endTime - startTime) <= 0: continue
 
-        #create a QSpacerItem to space-out buckets
-        spacerHeight = ((startTime % 86400) - lastEndTime[dayContents] - 20) * timeLenFactor
-                                                                            #-20 is for name and time
-        newSpacer = QSpacerItem(2,spacerHeight, vData=QSizePolicy.Policy.Fixed)
-        dayContents.layout().addSpacerItem(newSpacer)
-        calendarSpacersParents[newSpacer] = dayContents
+            #find correct day UI element
+            daySize = self.ui.days.frameSize().height()
+            timeLenFactor = (daySize / 86400)
+            match startTime // 86400:
+                case 0: dayContents = self.ui.Acontents
+                case 1: dayContents = self.ui.Bcontents
+                case 2: dayContents = self.ui.Ccontents
+                case 3: dayContents = self.ui.Dcontents
+                case 4: dayContents = self.ui.Econtents
+                case 5: dayContents = self.ui.Fcontents
+                case 6: dayContents = self.ui.Gcontents
 
-        #create the bucket itself
-        widgetHeight = (endTime - startTime) * timeLenFactor
-        newWidget = CalendarBucketElement(bucket.colour)
-        #print(bucket.bucketType, bucket.colour)
-        newWidget.populateWithTasks(bucket.bucketID, startTime, endTime, widgetHeight + 20)#CBE
-        newWidget.setNameAndTime(bucket)
-        newWidget.setFixedHeight(widgetHeight)
-        newWidget.setAutoFillBackground(True)
-        highlightPalette = QPalette()
-        highlightPalette.setColor(QPalette.ColorRole.Window, QColour(255,0,0, a=150))
-        newWidget.setPalette(highlightPalette)
-        dayContents.layout().addWidget(newWidget)
-        highlightWidgetsParents[newWidget] = dayContents
+            #create a QSpacerItem to space-out self.buckets
+            spacerHeight = ((startTime % 86400) - lastEndTime[dayContents] - 20) * timeLenFactor
+                                                              #-20 is for name and time
+            newSpacer = QSpacerItem(2,spacerHeight, vData=QSizePolicy.Policy.Fixed)
+            dayContents.layout().addSpacerItem(newSpacer)
+            self.calendarSpacersParents[newSpacer] = dayContents
 
-        #update LastEndTime
-        lastEndTime[dayContents] = endTime % 86400
+            #create the bucket itself
+            widgetHeight = (endTime - startTime) * timeLenFactor
+            newWidget = CalendarBucketElement(bucket.colour)
+            #print(bucket.bucketType, bucket.colour)
+            newWidget.populateWithTasks(bucket.bucketID, startTime, endTime, widgetHeight + 20)#CBE
+            newWidget.setNameAndTime(bucket)
+            newWidget.setFixedHeight(widgetHeight)
+            newWidget.setAutoFillBackground(True)
+            highlightPalette = QPalette()
+            highlightPalette.setColor(QPalette.ColorRole.Window, QColour(255,0,0, a=150))
+            newWidget.setPalette(highlightPalette)
+            dayContents.layout().addWidget(newWidget)
+            self.highlightWidgetsParents[newWidget] = dayContents
 
-        #some helpful debug info
-        '''
-        print("=======================================")
-        print(f"""StartTime:{startTime}, endTime:{endTime}\
-              length:{widgetHeight}, spacerHeight:{spacerHeight},
-              timeLenFactor: {timeLenFactor}
-        """)
+            #update LastEndTime
+            lastEndTime[dayContents] = endTime % 86400
 
-        print(highlightWidgetsParents, "\n =======\n", calendarSpacersParents)
-        '''
-    resizeDays()
-        
+            #some helpful debug info
+            '''
+            print("=======================================")
+            print(f"""StartTime:{startTime}, endTime:{endTime}\
+                  length:{widgetHeight}, spacerHeight:{spacerHeight},
+                  timeLenFactor: {timeLenFactor}
+            """)
+
+            print(self.highlightWidgetsParents, "\n =======\n", self.calendarSpacersParents)
+            '''
+    def setupConnections(self):
+        self.resized.connect(self.resizeDays)
+        self.HighlightBucketsOnCalendar()
+
+
+
 if __name__ == "__main__":
-    window.ui.pushButton.clicked.connect(HighlightBucketsOnCalendar)
+    app = QApplication.instance()
+    if app == None: app = QApplication()
+    window = CalendarWindow()
     window.show()
-    HighlightBucketsOnCalendar()
-    sys.exit(app.exec())
+    window.setupConnections()
+    try: sys.exit(app.exec())
+    except: app.beep()
