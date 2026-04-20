@@ -24,6 +24,7 @@ class CalendarWindow(QMainWindow):
         self.cursor.execute("""
             SELECT bucketID, bucketType, startTime, finishTime, bucketColour
             FROM Buckets
+            ORDER BY startTime ASC
         """)
         self.buckets = []
         for row in self.cursor.fetchall():
@@ -103,7 +104,7 @@ class CalendarWindow(QMainWindow):
         bucketTimes.sort(key = lambda bucketUiElement:
                          secondsSinceStartOfWeek(bucketUiElement.startDay.currentText(),
                                                  bucketUiElement.startTime.time())
-        """ #no longer needed as Self.Buckets will all be sorted when fetched
+        """ #no longer needed as Buckets will all be sorted when fetched
 
         #Add new spacers & widgets for each BucketTimeElement
         for bucket in self.buckets:      

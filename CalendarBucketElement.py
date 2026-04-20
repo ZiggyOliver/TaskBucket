@@ -63,14 +63,15 @@ class CalendarBucketElement(QWidget, Ui_Form):
             endTime = taskBucket.sessionTimeEnd
 
             #create a QSpacerItem to space-out the taskbuckets
-            spacerHeight = startTime * timeLenFactor
+            #spacerHeight = startTime * timeLenFactor
+            spacerHeight = 3
             newSpacer = QSpacerItem(2, spacerHeight, vData=QSizePolicy.Policy.Fixed)
             self.bucketContents.layout().addSpacerItem(newSpacer)
 
             #create the widget for the task itself
             widgetHeight = (endTime - startTime) * timeLenFactor
             newWidget = CalendarTaskBucketElement()
-            newWidget.setNameAndTime(taskBucket)
+            newWidget.setNameAndTime(taskBucket, bucketStartTime)
             newWidget.setFixedHeight(widgetHeight)
             newWidget.setAutoFillBackground(True)
             newWidget.setColour(self.colour)

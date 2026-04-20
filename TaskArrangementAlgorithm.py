@@ -31,13 +31,14 @@ def ArrangeTask(taskToPlace):
         )
         createdBucket.setID(fetchedBucket[0])
         bucketsAfterCurrentTime.append(createdBucket)
-        print("bucket found this week of type" + createdBucket.bucketType)
+        print("bucket found this week of type " + createdBucket.bucketType)
+
+    remainingTime = taskToPlace.estimatedTime
+    requiredSpace = remainingTime
 
     for bucket in bucketsAfterCurrentTime:
-        if taskToPlace.estimatedTime > taskToPlace.maximumSessionTime:
+        if remainingTime  > taskToPlace.maximumSessionTime:
             requiredSpace = taskToPlace.maximumSessionTime
-        else:
-            requiredSpace = taskToPlace.estimatedTime
 
         #finding space in current bucket
         print("bucketID: " + str(bucket.bucketID))
@@ -51,11 +52,62 @@ def ArrangeTask(taskToPlace):
         if newSessionStart == None: newSessionStart = 0
         else: newSessionStart = newSessionStart[0]
         newSessionEnd = newSessionStart + requiredSpace
-        newTaskBucket = TaskBucket(
-            taskToPlace.taskID, bucket.bucketID, newSessionStart, newSessionEnd)
-        print("line52")
-        newTaskBucket.AddTaskBucketToDB(connection = connection)
-        connection.commit()
+        if newSessionEnd <= bucket.finishTime: #implies that there is space in this bucket
+            newTaskBucket = TaskBucket(
+                taskToPlace.taskID, bucket.bucketID, newSessionStart, newSessionEnd
+            )
+            print("there is space in bucket with bucketID " + str(bucket.bucketID))
+            newTaskBucket.AddTaskBucketToDB(connection = connection)
+            connection.commit()
+            remainingTime -= requiredSpace
+            if remainingTime == 0: break
+
+    #It seems as if we need space in future weeks
+    week = epoch.sow() // 604800
+    cursor.execute(f"""
+        SELECT bucketID, bucketType, startTime, finishTime
+        FROM Buckets
+        WHERE bucketType = "{taskToPlace.compatibleBucketType}"
+    """)
+    allBuckets = []
+    for fetchedBucket in cursor.fetchall():
+        print(fetchedBucket[0], fetchedBucket[1], fetchedBucket[2], fetchedBucket[3])
+        createdBucket = Bucket(
+            fetchedBucket[1],fetchedBucket[2], fetchedBucket[3]
+        )
+        createdBucket.setID(fetchedBucket[0])
+        allBuckets.append(createdBucket)
+        print("bucket found in a future week of type " + createdBucket.bucketType)
+    pastDeadline = False
+    while remainingTime > 0:
+        for bucket in allBuckets:
+            if bucket.finishTime + (week*604800) >= taskToPlace.deadline:
+                print("could not find enough space for task with ID " + taskToPlace.taskID)
+                pastDeadline = True
+                break
+            #finding space in current bucket
+            print("bucketID: " + str(bucket.bucketID))
+            cursor.execute(f"""
+                SELECT sessionTimeEnd
+                FROM TaskBuckets
+                WHERE bucketID == {bucket.bucketID}
+                ORDER BY sessionTimeEnd DESC
+            """)
+            newSessionStart = cursor.fetchone()
+            if newSessionStart == None: newSessionStart = 0
+            else: newSessionStart = newSessionStart[0]
+            newSessionEnd = newSessionStart + requiredSpace
+            if newSessionEnd <= bucket.finishTime: #implies that there is space in this bucket
+                newTaskBucket = TaskBucket(
+                    taskToPlace.taskID, bucket.bucketID, newSessionStart, newSessionEnd
+                )
+                print("there is space in bucket with bucketID " + str(bucket.bucketID))
+                newTaskBucket.AddTaskBucketToDB(connection = connection)
+                connection.commit()
+                remainingTime -= requiredSpace
+            week += 1
+            if pastDeadline: break
+
         
         
     os.remove("TaskBucket_Data_copy.db")
