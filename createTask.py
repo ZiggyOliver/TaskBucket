@@ -53,12 +53,14 @@ class CreateTaskWindow(QMainWindow):
         description = self.ui.taskDescriptionEdit.toPlainText()
         maxSessionTime = self.ui.maxSessionTimeEdit.time().msecsSinceStartOfDay() // 1000
         if maxSessionTime == 0: maxSessionTime = estimatedTime
+        """
         status = self.ui.taskStatusEdit.toPlainText()
         recursion = ""
         if self.ui.dailyRecRadio.isChecked(): recursion = "daily"
         elif self.ui.weeklyRecRadio.isChecked(): recursion = "weekly"
         elif self.ui.monthlyRecRadio.isChecked(): recursion = "monthly"
         elif self.ui.yearlyRecRadio.isChecked(): recursion = "yearly"
+        """
 
         #input validation
         inputsAreValid = True

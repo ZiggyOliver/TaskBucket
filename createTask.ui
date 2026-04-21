@@ -32,6 +32,9 @@
       </property>
      </widget>
     </item>
+    <item row="1" column="1">
+     <widget class="QComboBox" name="taskBucketTypeSelector"/>
+    </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_3">
       <property name="text">
@@ -63,69 +66,21 @@
      <widget class="QPlainTextEdit" name="taskDescriptionEdit"/>
     </item>
     <item row="5" column="0">
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string>Task Status Set</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="1">
-     <widget class="QPlainTextEdit" name="taskStatusEdit"/>
-    </item>
-    <item row="7" column="0">
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>Task Recursion</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="1">
-     <widget class="QRadioButton" name="dailyRecRadio">
-      <property name="text">
-       <string>Every Day</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="1">
-     <widget class="QRadioButton" name="weeklyRecRadio">
-      <property name="text">
-       <string>Every Week</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="1">
-     <widget class="QRadioButton" name="monthlyRecRadio">
-      <property name="text">
-       <string>Every Month</string>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="1">
-     <widget class="QRadioButton" name="yearlyRecRadio">
-      <property name="text">
-       <string>Every Year</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="1">
-     <widget class="QDialogButtonBox" name="buttonBox">
-      <property name="standardButtons">
-       <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
      <widget class="QLabel" name="label_8">
       <property name="text">
        <string>Maximum Session Time</string>
       </property>
      </widget>
     </item>
-    <item row="6" column="1">
+    <item row="5" column="1">
      <widget class="QTimeEdit" name="maxSessionTimeEdit"/>
     </item>
-    <item row="1" column="1">
-     <widget class="QComboBox" name="taskBucketTypeSelector"/>
+    <item row="6" column="1">
+     <widget class="QDialogButtonBox" name="buttonBox">
+      <property name="standardButtons">
+       <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

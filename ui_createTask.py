@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'createTask.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.10.1
+## Created by: Qt User Interface Compiler version 6.10.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -17,8 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractButton, QApplication, QComboBox, QDateTimeEdit,
     QDialogButtonBox, QFormLayout, QLabel, QMainWindow,
-    QMenuBar, QPlainTextEdit, QRadioButton, QSizePolicy,
-    QStatusBar, QTimeEdit, QWidget)
+    QMenuBar, QPlainTextEdit, QSizePolicy, QStatusBar,
+    QTimeEdit, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -43,6 +43,11 @@ class Ui_Form(object):
         self.label_2.setObjectName(u"label_2")
 
         self.formLayout.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_2)
+
+        self.taskBucketTypeSelector = QComboBox(self.centralwidget)
+        self.taskBucketTypeSelector.setObjectName(u"taskBucketTypeSelector")
+
+        self.formLayout.setWidget(1, QFormLayout.ItemRole.FieldRole, self.taskBucketTypeSelector)
 
         self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
@@ -74,61 +79,21 @@ class Ui_Form(object):
 
         self.formLayout.setWidget(4, QFormLayout.ItemRole.FieldRole, self.taskDescriptionEdit)
 
-        self.label_6 = QLabel(self.centralwidget)
-        self.label_6.setObjectName(u"label_6")
+        self.label_8 = QLabel(self.centralwidget)
+        self.label_8.setObjectName(u"label_8")
 
-        self.formLayout.setWidget(5, QFormLayout.ItemRole.LabelRole, self.label_6)
+        self.formLayout.setWidget(5, QFormLayout.ItemRole.LabelRole, self.label_8)
 
-        self.taskStatusEdit = QPlainTextEdit(self.centralwidget)
-        self.taskStatusEdit.setObjectName(u"taskStatusEdit")
+        self.maxSessionTimeEdit = QTimeEdit(self.centralwidget)
+        self.maxSessionTimeEdit.setObjectName(u"maxSessionTimeEdit")
 
-        self.formLayout.setWidget(5, QFormLayout.ItemRole.FieldRole, self.taskStatusEdit)
-
-        self.label_7 = QLabel(self.centralwidget)
-        self.label_7.setObjectName(u"label_7")
-
-        self.formLayout.setWidget(7, QFormLayout.ItemRole.LabelRole, self.label_7)
-
-        self.dailyRecRadio = QRadioButton(self.centralwidget)
-        self.dailyRecRadio.setObjectName(u"dailyRecRadio")
-
-        self.formLayout.setWidget(8, QFormLayout.ItemRole.FieldRole, self.dailyRecRadio)
-
-        self.weeklyRecRadio = QRadioButton(self.centralwidget)
-        self.weeklyRecRadio.setObjectName(u"weeklyRecRadio")
-
-        self.formLayout.setWidget(9, QFormLayout.ItemRole.FieldRole, self.weeklyRecRadio)
-
-        self.monthlyRecRadio = QRadioButton(self.centralwidget)
-        self.monthlyRecRadio.setObjectName(u"monthlyRecRadio")
-
-        self.formLayout.setWidget(10, QFormLayout.ItemRole.FieldRole, self.monthlyRecRadio)
-
-        self.yearlyRecRadio = QRadioButton(self.centralwidget)
-        self.yearlyRecRadio.setObjectName(u"yearlyRecRadio")
-
-        self.formLayout.setWidget(11, QFormLayout.ItemRole.FieldRole, self.yearlyRecRadio)
+        self.formLayout.setWidget(5, QFormLayout.ItemRole.FieldRole, self.maxSessionTimeEdit)
 
         self.buttonBox = QDialogButtonBox(self.centralwidget)
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Ok)
 
-        self.formLayout.setWidget(12, QFormLayout.ItemRole.FieldRole, self.buttonBox)
-
-        self.label_8 = QLabel(self.centralwidget)
-        self.label_8.setObjectName(u"label_8")
-
-        self.formLayout.setWidget(6, QFormLayout.ItemRole.LabelRole, self.label_8)
-
-        self.maxSessionTimeEdit = QTimeEdit(self.centralwidget)
-        self.maxSessionTimeEdit.setObjectName(u"maxSessionTimeEdit")
-
-        self.formLayout.setWidget(6, QFormLayout.ItemRole.FieldRole, self.maxSessionTimeEdit)
-
-        self.taskBucketTypeSelector = QComboBox(self.centralwidget)
-        self.taskBucketTypeSelector.setObjectName(u"taskBucketTypeSelector")
-
-        self.formLayout.setWidget(1, QFormLayout.ItemRole.FieldRole, self.taskBucketTypeSelector)
+        self.formLayout.setWidget(6, QFormLayout.ItemRole.FieldRole, self.buttonBox)
 
         Form.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(Form)
@@ -151,12 +116,6 @@ class Ui_Form(object):
         self.label_3.setText(QCoreApplication.translate("Form", u"Task Deadline", None))
         self.label_4.setText(QCoreApplication.translate("Form", u"Estimated Task Time", None))
         self.label_5.setText(QCoreApplication.translate("Form", u"Task Description", None))
-        self.label_6.setText(QCoreApplication.translate("Form", u"Task Status Set", None))
-        self.label_7.setText(QCoreApplication.translate("Form", u"Task Recursion", None))
-        self.dailyRecRadio.setText(QCoreApplication.translate("Form", u"Every Day", None))
-        self.weeklyRecRadio.setText(QCoreApplication.translate("Form", u"Every Week", None))
-        self.monthlyRecRadio.setText(QCoreApplication.translate("Form", u"Every Month", None))
-        self.yearlyRecRadio.setText(QCoreApplication.translate("Form", u"Every Year", None))
         self.label_8.setText(QCoreApplication.translate("Form", u"Maximum Session Time", None))
     # retranslateUi
 
