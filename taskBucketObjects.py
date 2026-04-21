@@ -13,7 +13,7 @@ class Task:
     recursion = ""
 
     def __init__(self, taskName, compatibleBucketType, deadline, estimatedTime, description,
-                 maximumSessionTime, status, recursion):
+                 maximumSessionTime, x = "", y = ""):
 
         self.taskName = taskName
         self.compatibleBucketType = compatibleBucketType
@@ -69,6 +69,7 @@ class TaskBucket:
     bucket = float("nan")
     sessionTimeStart = float("nan")
     sessionTimeEnd = float("nan")
+    epochWeek = 0
 
     def __init__(self, task, bucket, sessionTimeStart, sessionTimeEnd):
         self.task = task
@@ -76,12 +77,15 @@ class TaskBucket:
         self.sessionTimeStart = sessionTimeStart
         self.sessionTimeEnd = sessionTimeEnd
 
+    def setEpochWeek(self, epochWeek): self.epochWeek = epochWeek
+
 
     def AddTaskBucketToDB(self, connection = sqlite3.connect("TaskBucket_Data.db")):
         print("addTaskBUcketToDBCalled")
         cursor = connection.cursor()
 
         cursor.execute(f"""
-        INSERT INTO TaskBuckets (taskID, bucketID, sessionTimeStart, SessionTimeEnd)
-        VALUES ("{self.task}", {self.bucket}, {self.sessionTimeStart},{self.sessionTimeEnd})
+        INSERT INTO TaskBuckets (taskID, bucketID, sessionTimeStart, SessionTimeEnd, epochWeek)
+        VALUES ("{self.task}", {self.bucket}, {self.sessionTimeStart},{self.sessionTimeEnd},
+        {self.epochWeek})
         """)

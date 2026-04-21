@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget
+from PySide6.QtWidgets import QWidget, QDialogButtonBox as QDialogueButtonBox
 from PySide6.QtGui import QColor as QColour, QPalette
 from ui_taskItem import Ui_taskItem
 from promptReschedule import PromptReschedule
@@ -34,12 +34,22 @@ class TaskItem(QWidget, Ui_taskItem):
         self.ui.taskName.setText(task.taskName)
 
         #setup reschedule button connection
+        print(task)
+        print(task.taskID)
+
         """
-        self.ui.rescheduleButton.clicked.connect(
-            lambda
-                task = task,
-                time = self.ui.timeEdit.time().msecsSinceStartOfDay // 1000,
-                deadline = self.ui.deadlineEdit.dateTime().toSecsSinceEpoch()
-            
-            :PromptReschedule(task, time, deadline))
+        taskOptionsWindow = PromptReschedule(task)
+        taskOptionsWindow.show()
+        
         """
+        def PromptPromptReschedule():
+            self.dialogue = PromptReschedule(task)
+            self.dialogue.show()
+            okButton = self.dialogue.ui.buttonBox.button(QDialogueButtonBox.Ok)
+            okButton.clicked.connect(self.dialogue.RescheduleTask)
+
+        
+        self.ui.rescheduleButton.clicked.connect(PromptPromptReschedule)
+        
+        
+    

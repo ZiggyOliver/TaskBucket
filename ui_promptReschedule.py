@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'promptReschedule.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.10.2
+## Created by: Qt User Interface Compiler version 6.10.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -21,6 +21,7 @@ from PySide6.QtWidgets import (QAbstractButton, QApplication, QDateTimeEdit, QDi
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
+        print("Ui_Dialogue instance =", self)
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(400, 300)

@@ -131,7 +131,7 @@ def ArrangeUnarrangedTasks():
         #print(cursor.fetchone())
         if cursor.fetchone() != None: continue
         
-        newTask = Task(row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8])
+        newTask = Task(row[1], row[2], row[3], row[4], row[5], row[6])
         newTask.setID(row[0])
 
         ArrangeTask(newTask)

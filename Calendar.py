@@ -166,11 +166,12 @@ class CalendarWindow(QMainWindow):
         self.taskItemsInTasksList = []
         self.cursor.execute("""
         SELECT name, compatibleBucketType, deadline, estimatedTime, description, maxSessionTime,
-                status, recursion
+                status, recursion, taskID
         FROM Tasks
         """)
         for row in self.cursor.fetchall():
             newTask = Task(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+            newTask.setID(row[8])
             newTaskItem = TaskItem(newTask)
             self.ui.tasksList.layout().addWidget(newTaskItem)
             self.taskItemsInTasksList.append(newTaskItem)

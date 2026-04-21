@@ -22,6 +22,7 @@ from PySide6.QtWidgets import (QAbstractButton, QApplication, QComboBox, QDateTi
 
 class Ui_Form(object):
     def setupUi(self, Form):
+        print("Ui_Form =", self)
         if not Form.objectName():
             Form.setObjectName(u"Form")
         Form.resize(800, 626)

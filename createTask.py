@@ -12,6 +12,7 @@ class CreateTaskWindow(QMainWindow):
     def __init__(self):
         super(CreateTaskWindow, self).__init__()
         self.ui = Ui_Form()
+        print("createTaskWindow.ui =", self.ui)
         self.ui.setupUi(self)
 
         self.warningShown = False
@@ -75,7 +76,7 @@ class CreateTaskWindow(QMainWindow):
 
         if inputsAreValid:
             taskToCreate = Task(taskName, compatibleBucketType, taskDeadline, estimatedTime,
-                                description, maxSessionTime, status, recursion)
+                                description, maxSessionTime)
             taskToCreate.AddTaskToDB()
             self.close()
         else:
