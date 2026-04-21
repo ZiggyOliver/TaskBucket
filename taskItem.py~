@@ -1,0 +1,33 @@
+from PySide6.QtWidgets import QtWidget
+from PySide6.QtGui import QColor as QColour
+from ui_taskItem import Ui_Form
+from promptReschedule import PromptReschedule
+
+
+class TaskItem(QWidget, Ui_Form):
+    def __init__(self, task, parent = None):
+        super().__init__(parent)
+        self.setupUi(self)
+
+        #set colour to the colour of the bucket
+        connection = sqlite3.connect("TaskBucket_Data.db")
+        cursor = connection.cursor()
+        cursor.execute(f"""
+            SELECT bucketColour
+            FROM Buckets
+            WHERE BucketType == "{task.compatibleBucketType}"
+        """)
+        colourString = cursor.fetchone()[0]
+        
+        self.taskItem.setPalette(QPalette(QColour(),QColour(
+            colourString[0:3],
+            colourString[3:6],
+            colourString[6:],
+            a = 255
+        )))
+
+        #set Name to name of the task
+        self.taskName.setText(task.taskName)
+
+        #setup reschedule button connection
+        self.rescheduleButton.clicked.connect(PromptReschedule)

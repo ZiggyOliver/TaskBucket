@@ -82,7 +82,8 @@ def ArrangeTask(taskToPlace):
     while remainingTime > 0:
         for bucket in allBuckets:
             if bucket.finishTime + (week*604800) >= taskToPlace.deadline:
-                print("could not find enough space for task with ID " + taskToPlace.taskID)
+                print("could not find enough space for task with ID " + str(taskToPlace.taskID))
+                print("seconds Defecit: " + str(remainingTime))
                 pastDeadline = True
                 break
             #finding space in current bucket
@@ -107,6 +108,7 @@ def ArrangeTask(taskToPlace):
                 remainingTime -= requiredSpace
             week += 1
             if pastDeadline: break
+        if pastDeadline: break
 
         
         
@@ -133,3 +135,6 @@ def ArrangeUnarrangedTasks():
         newTask.setID(row[0])
 
         ArrangeTask(newTask)
+
+
+    

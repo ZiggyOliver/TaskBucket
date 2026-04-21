@@ -1,12 +1,14 @@
 import sqlite3
 import sys
 from taskBucketObjects import Task, Bucket, TaskBucket
-from PySide6.QtWidgets import (QApplication, QMainWindow, QSpacerItem, QWidget, QSizePolicy)
+from PySide6.QtWidgets import (QApplication, QMainWindow, QSpacerItem, QWidget, QSizePolicy,
+                               QDialog as QDialogue)
 from PySide6.QtGui import QPalette, QColor as QColour
 from PySide6.QtCore import QFile, Signal, Slot
 from ui_calendar import Ui_MainWindow
 from CalendarBucketElement import CalendarBucketElement
 import TaskArrangementAlgorithm
+from taskItem import TaskItem
 
 class CalendarWindow(QMainWindow):
     resized = Signal()
@@ -159,10 +161,25 @@ class CalendarWindow(QMainWindow):
 
             print(self.highlightWidgetsParents, "\n =======\n", self.calendarSpacersParents)
             '''
+    @Slot()
+    def showTaskItems(self):
+        self.taskItemsInTasksList = []
+        self.cursor.execute("""
+        SELECT name, compatibleBucketType, deadline, estimatedTime, description, maxSessionTime,
+                status, recursion
+        FROM Tasks
+        """)
+        for row in self.cursor.fetchall():
+            newTask = Task(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+            newTaskItem = TaskItem(newTask)
+            self.ui.tasksList.layout().addWidget(newTaskItem)
+            self.taskItemsInTasksList.append(newTaskItem)
+            
+        
     def setupConnections(self):
         self.resized.connect(self.resizeDays)
         self.HighlightBucketsOnCalendar()
-
+        self.showTaskItems()
 
 
 if __name__ == "__main__":

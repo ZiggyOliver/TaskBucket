@@ -29,9 +29,11 @@ class Task:
         connection = sqlite3.connect("TaskBucket_Data.db")
         cursor = connection.cursor()
         operationString = f"""
-        INSERT INTO Tasks (name, compatibleBucketType, deadline, description, estimatedTime)
+        INSERT INTO Tasks (name, compatibleBucketType, deadline, description, estimatedTime,
+        maxSessionTime)
         VALUES ("{self.taskName}", "{self.compatibleBucketType}",
-                 {self.deadline}, "{self.description}", {self.estimatedTime})
+                 {self.deadline}, "{self.description}", {self.estimatedTime},
+                 {self.maximumSessionTime})
         """
 
         cursor.execute(operationString)

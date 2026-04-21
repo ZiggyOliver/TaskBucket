@@ -16,6 +16,7 @@ class CalendarTaskBucketElement(QWidget, Ui_Form):
         super().__init__(parent)
         self.setupUi(self)
         self.setAttribute(Qt.WA_TranslucentBackground, True)
+        
 
     def setNameAndTime(self, taskBucket, bucketTimeStart):
         #find task this taskBucket belongs to
@@ -29,15 +30,16 @@ class CalendarTaskBucketElement(QWidget, Ui_Form):
         """)
         self.taskName.setText(cursor.fetchone()[0])
         
-
-        startTimeString = str(((taskBucket.sessionTimeStart + bucketTimeStart) % 86400)\
-                              // (60**2)).zfill(2) \
-                           + ":" + \
-                          str(((taskBucket.sessionTimeStart % 86400) // 60) % 60).zfill(2)
+        absoluteStartTime = taskBucket.sessionTimeStart + bucketTimeStart
+        absoluteEndTime = taskBucket.sessionTimeEnd + bucketTimeStart
         
-        endTimeString = str((taskBucket.sessionTimeEnd % 86400) // (60**2)).zfill(2) \
+        startTimeString = str((absoluteStartTime % 86400)\
+                              // (60**2)).zfill(2) + ":" + \
+                          str(((absoluteStartTime % 86400) // 60) % 60).zfill(2)
+        
+        endTimeString = str((absoluteEndTime % 86400) // (60**2)).zfill(2) \
                         + ":" + \
-                        str(((taskBucket.sessionTimeEnd % 86400) // 60) % 60).zfill(2)
+                        str(((absoluteEndTime % 86400) // 60) % 60).zfill(2)
 
         self.taskTime.setText(startTimeString + " — " + endTimeString)
 
@@ -48,6 +50,7 @@ class CalendarTaskBucketElement(QWidget, Ui_Form):
             colourAsRgbTuple[2],
             a = 255
         )))
+        
 
 
         

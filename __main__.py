@@ -15,7 +15,6 @@ class MainWindow(QMainWindow):
 
     @Slot()
     def LoadAddBuckets(self):
-        print("Load Add Buckets Called")
         self.window = CreateBucketWindow()
         self.window.show()
         self.window.setupConnections()
@@ -29,7 +28,6 @@ class MainWindow(QMainWindow):
 
     @Slot()
     def LoadSchedule(self):
-        print("Load Schedule Called")
         self.window = CalendarWindow()
         self.window.show()
         self.window.setupConnections()
