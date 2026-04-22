@@ -1,0 +1,50 @@
+import shutil
+import sqlite3
+import os
+from taskBucketObjects import Task, Bucket, TaskBucket
+import epoch
+
+connection = sqlite3.connect("TaskBucket_Data.py")
+cursor = connection.cursor
+
+def betterArrangeTask(taskToPlace):
+    print("betterArrangeTask called for task with taskID", taskToPlace.taskID)
+    shutil.copyfile("TaskBucket_Data.db", "TaskBucket_Data_copy.db")
+    #fetch applicable buckets from the databse
+
+    cursor.execute(f"""
+        SELECT bucketID, bucketType, startTime, finishTime
+        FROM Buckets
+        WHERE bucketType = "{taskToPlace.compatibleBucketType}"
+    """)
+    allBuckets = []
+    for row in cursor.fetchall():
+        newBucket = Bucket(row[1], row[2], row[3])
+        newBucket.setID(row[0])
+        allBuckets.append(newBucket)
+
+    weekWhenRun = epoch.sow() // 604800
+    weekCount = weekWhenRun
+    pastDeadline = False
+    bucketCount = 0
+    remainingTime = taskToPlace.estimatedTime
+    requiredSpace = taskToPlace.maximumSessionTime
+    while pastDeadline == False:
+        bucket = allBuckets[bucketCount % len(allBuckets)]
+
+        #stop if the bucket is before the deadline
+        if (bucket.startTime + weekCount*604800) >= taskToPlace.deadline:
+            print(f"""
+            stopped looking for buckets when bucket was found with startTime
+            {bucket.startTime} in week {weekCount}
+            """)
+            pastDeadline = True
+            break
+
+        #find the last item in this bucket to determine the space left
+        cursor.execute(f"""
+        SELECT sesisonTimeEnd
+        FROM TaskBuckets
+        WHERE bucketID = {bucket.bucketID}, epochWeek = {weekCount}
+        ORDER BY 
+        """)

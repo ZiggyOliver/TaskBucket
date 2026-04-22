@@ -5,6 +5,7 @@ import sqlite3
 import os
 from taskBucketObjects import Task, Bucket, TaskBucket
 import epoch
+from betterArrange import BetterArrangeTask
 
 connection = sqlite3.connect("TaskBucket_Data.db")
 cursor = connection.cursor()
@@ -139,7 +140,8 @@ def ArrangeUnarrangedTasks():
         newTask = Task(row[1], row[2], row[3], row[4], row[5], row[6])
         newTask.setID(row[0])
 
-        ArrangeTask(newTask)
+        #ArrangeTask(newTask)
+        BetterArrangeTask(newTask)
 
 
     
