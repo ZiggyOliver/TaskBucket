@@ -18,7 +18,11 @@ def ArrangeTask(taskToPlace):
     cursor.execute(f"""
         SELECT bucketID, bucketType, startTime, finishTime
         FROM Buckets
-        WHERE startTime BETWEEN {epoch.now() - epoch.sow()} AND {taskToPlace.deadline - epoch.sow()}
+        WHERE startTime BETWEEN {epoch.now() - epoch.sow()}
+                                AND
+                                {taskToPlace.deadline - epoch.sow()}
+              AND bucketType == "{taskToPlace.compatibleBucketType}"
+                     
         ORDER BY startTime ASC
     """)
 
@@ -102,6 +106,7 @@ def ArrangeTask(taskToPlace):
                 newTaskBucket = TaskBucket(
                     taskToPlace.taskID, bucket.bucketID, newSessionStart, newSessionEnd
                 )
+                newTaskBucket.setEpochWeek(week)
                 print("there is space in bucket with bucketID " + str(bucket.bucketID))
                 newTaskBucket.AddTaskBucketToDB(connection = connection)
                 connection.commit()

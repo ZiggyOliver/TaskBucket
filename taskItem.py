@@ -6,7 +6,7 @@ import sqlite3
 
 
 class TaskItem(QWidget, Ui_taskItem):
-    def __init__(self, task, parent = None):
+    def __init__(self, task, calendarWindow = None, parent = None):
         super(TaskItem, self).__init__()
         self.ui = Ui_taskItem()
         self.ui.setupUi(self)
@@ -43,13 +43,14 @@ class TaskItem(QWidget, Ui_taskItem):
         
         """
         def PromptPromptReschedule():
-            self.dialogue = PromptReschedule(task)
+            self.dialogue = PromptReschedule(task, calendarWindow = calendarWindow)
             self.dialogue.show()
             okButton = self.dialogue.ui.buttonBox.button(QDialogueButtonBox.Ok)
             okButton.clicked.connect(self.dialogue.RescheduleTask)
 
         
         self.ui.rescheduleButton.clicked.connect(PromptPromptReschedule)
+        
         
         
     

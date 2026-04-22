@@ -172,7 +172,7 @@ class CalendarWindow(QMainWindow):
         for row in self.cursor.fetchall():
             newTask = Task(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
             newTask.setID(row[8])
-            newTaskItem = TaskItem(newTask)
+            newTaskItem = TaskItem(newTask, calendarWindow = self)
             self.ui.tasksList.layout().addWidget(newTaskItem)
             self.taskItemsInTasksList.append(newTaskItem)
             
