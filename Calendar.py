@@ -21,6 +21,7 @@ class CalendarWindow(QMainWindow):
         TaskArrangementAlgorithm.ArrangeUnarrangedTasks()
 
         #fetch from database
+
         self.connection = sqlite3.connect("TaskBucket_Data.db")
         self.cursor = self.connection.cursor()
         self.cursor.execute("""
@@ -28,6 +29,7 @@ class CalendarWindow(QMainWindow):
             FROM Buckets
             ORDER BY startTime ASC
         """)
+
         self.buckets = []
         for row in self.cursor.fetchall():
             newBucketObject = Bucket(row[1], row[2], row[3])
@@ -184,6 +186,7 @@ class CalendarWindow(QMainWindow):
 
 
 if __name__ == "__main__":
+    print("calendar window run in main")
     app = QApplication.instance()
     if app == None: app = QApplication()
     window = CalendarWindow()

@@ -7,8 +7,6 @@ from taskBucketObjects import Task, Bucket, TaskBucket
 import epoch
 from betterArrange import BetterArrangeTask
 
-connection = sqlite3.connect("TaskBucket_Data.db")
-cursor = connection.cursor()
 
 def ArrangeTask(taskToPlace):
     print("ArrangeTask called for task with ID " + str(taskToPlace.taskID))
@@ -121,7 +119,11 @@ def ArrangeTask(taskToPlace):
     os.remove("TaskBucket_Data_copy.db")
 
 def ArrangeUnarrangedTasks():
+    connection = sqlite3.connect("TaskBucket_Data.db")
+    cursor = connection.cursor()
+
     print("===========ArrangeUnarrangedTasks called=================")
+    print(cursor)
     cursor.execute("""
         SELECT taskID, name, compatibleBucketType, deadline, estimatedTime, description, \
                 maxSessionTime, status, recursion
@@ -143,5 +145,6 @@ def ArrangeUnarrangedTasks():
         #ArrangeTask(newTask)
         BetterArrangeTask(newTask)
 
-
+        
+    
     

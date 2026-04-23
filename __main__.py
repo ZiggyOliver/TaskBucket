@@ -6,6 +6,8 @@ import createBucket
 from createBucket import CreateBucketWindow
 from createTask import CreateTaskWindow
 from Calendar import CalendarWindow
+from GenerateDatabase import GenerateDatabase
+import os
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -33,6 +35,13 @@ class MainWindow(QMainWindow):
         self.window.setupConnections()
 
 if __name__ == "__main__":
+    #create the database file if it doesn't exist already
+    if os.path.exists("TaskBucket_Data.db"):
+        print("YouAlreadyHaveADBFile")
+    else:
+        print("No DB file detected, generating one")
+        GenerateDatabase()
+    
     app = QApplication.instance()
     if app == None: app = QApplication(sys.argv)
     window = MainWindow()

@@ -42,6 +42,7 @@ class TaskItem(QWidget, Ui_taskItem):
         taskOptionsWindow.show()
         
         """
+        print("name in taskItem is ", __name__)
         def PromptPromptReschedule():
             self.dialogue = PromptReschedule(task, calendarWindow = calendarWindow)
             self.dialogue.show()

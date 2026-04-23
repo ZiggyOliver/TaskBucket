@@ -4,10 +4,11 @@ import os
 from taskBucketObjects import Task, Bucket, TaskBucket
 import epoch
 
-connection = sqlite3.connect("TaskBucket_Data.db")
-cursor = connection.cursor()
 
 def BetterArrangeTask(taskToPlace):
+    connection = sqlite3.connect("TaskBucket_Data.db")
+    cursor = connection.cursor()
+
     print("betterArrangeTask called for task with taskID", taskToPlace.taskID)
     shutil.copyfile("TaskBucket_Data.db", "TaskBucket_Data_copy.db")
     #fetch applicable buckets from the databse
@@ -30,17 +31,26 @@ def BetterArrangeTask(taskToPlace):
     remainingTime = taskToPlace.estimatedTime
     requiredSpace = taskToPlace.maximumSessionTime
     ranOutOfSpace = False
-    while pastDeadline == False:
+    ignoreMaxSessionTime = False
+    
+    while True:
         bucket = allBuckets[bucketCount % len(allBuckets)]
 
         #stop if the bucket is before the deadline
-        if (bucket.startTime + weekCount*604800) >= taskToPlace.deadline:
+        if (bucket.startTime + (weekCount)*604800) >= taskToPlace.deadline:
             print(f"""
             stopped looking for buckets when bucket was found with startTime
-            {bucket.startTime} in week {weekCount}
+            {bucket.startTime} in week {weekCount}.
+            Seconds Defecit: {remainingTime}
+            Minutes Defecit: {remainingTime / 60}
+
+            (current week is {epoch.now() // 604800})
             """)
             pastDeadline = True
-            break
+            #go back to start to see if there is space leftover from maxSessionTime
+            weekCount = weekWhenRun
+            bucketCount = 0
+            
 
         #find the last item in this bucket to determine the space left
         cursor.execute(f"""
@@ -68,13 +78,24 @@ def BetterArrangeTask(taskToPlace):
             newTaskBucket.AddTaskBucketToDB(connection = connection)
             remainingTime -= requiredSpace
             if remainingTime < taskToPlace.maximumSessionTime: requiredSpace = remainingTime
-            if remainingTime <= 0: break
+
+            print("remainingTime in mins", remainingTime / 60)
+            print("requiredSpace in mins", requiredSpace / 60)
             
 
         else:
             print("there is no space in bucket with bucket ID", bucket.bucketID)
             ranOutOfSpace = True
 
-        weekCount += 1
+        if (bucketCount + 1) % len(allBuckets) == 0: weekCount += 1
+        bucketCount += 1
 
-    if ranOutOfSpace == False: connection.commit()
+
+    if remainingTime <= 0: connection.commit(); print("betterArrangeCommited")
+    else:
+        print(f"task with ID {taskToPlace.taskID} could not be scheduled")
+        connection.rollback()
+
+    del connection
+        
+

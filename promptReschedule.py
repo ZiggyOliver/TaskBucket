@@ -1,7 +1,8 @@
 from PySide6.QtWidgets import QWidget, QDialog as QDialogue
 from PySide6.QtCore import Signal, Slot, QDate, QTime, QDateTime
 from ui_promptReschedule import Ui_Dialog as Ui_Dialogue
-from TaskArrangementAlgorithm import ArrangeTask
+from betterArrange import BetterArrangeTask
+from TaskArrangementAlgorithm import ArrangeUnarrangedTasks
 import sqlite3
 
 class PromptReschedule(QDialogue):
@@ -23,12 +24,13 @@ class PromptReschedule(QDialogue):
     def RescheduleTask(self):
         print("RescheduleTask Called")
         #remove previously created taskBuckets of this task
+        #actually, just remove all the task buckets because they can be replaced and moving one task
+        #can create weird edge cases
         connection = sqlite3.connect("TaskBucket_Data.db")
         cursor = connection.cursor()
         print(self.task)
         cursor.execute(f"""
             DELETE FROM TaskBuckets
-            WHERE taskID == {self.task.taskID}
         """)
 
         #Modify this task 
@@ -42,5 +44,8 @@ class PromptReschedule(QDialogue):
         connection.commit()
 
         #Arrange the task again
-        ArrangeTask(self.task)
+        #BetterArrangeTask(self.task)
+
+        #to make up for deleting all tasks, now put them all back
+        ArrangeUnarrangedTasks()
         self.calendarWindow.HighlightBucketsOnCalendar()
