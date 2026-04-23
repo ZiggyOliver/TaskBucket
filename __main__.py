@@ -2,7 +2,6 @@ from ui_mainwindow import Ui_MainWindow
 from PySide6.QtWidgets import (QMainWindow, QApplication, QPushButton)
 from PySide6.QtCore import Signal, Slot
 import sys
-import createBucket
 from createBucket import CreateBucketWindow
 from createTask import CreateTaskWindow
 from Calendar import CalendarWindow

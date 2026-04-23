@@ -34,6 +34,10 @@ def BetterArrangeTask(taskToPlace):
     ignoreMaxSessionTime = False
     
     while True:
+        print("========")
+        print("remainingTime in mins", remainingTime / 60)
+        print("requiredSpace in mins", requiredSpace / 60)
+
         bucket = allBuckets[bucketCount % len(allBuckets)]
 
         #stop if the bucket is before the deadline
@@ -78,10 +82,9 @@ def BetterArrangeTask(taskToPlace):
             newTaskBucket.AddTaskBucketToDB(connection = connection)
             remainingTime -= requiredSpace
             if remainingTime < taskToPlace.maximumSessionTime: requiredSpace = remainingTime
-
-            print("remainingTime in mins", remainingTime / 60)
-            print("requiredSpace in mins", requiredSpace / 60)
-            
+            if remainingTime == 0:
+                print(f"task with ID {taskToPlace.taskID} placed succesfully")
+                break            
 
         else:
             print("there is no space in bucket with bucket ID", bucket.bucketID)
@@ -97,5 +100,7 @@ def BetterArrangeTask(taskToPlace):
         connection.rollback()
 
     del connection
+    os.remove("TaskBucket_Data_copy.db")
+
         
 

@@ -47,17 +47,19 @@ class Bucket:
     startTime = float("nan")
     finishTime = float("nan")
     colour = None
+    databaseName = ""
 
     def __init__(self, bucketType, startTime, finishTime):
         self.bucketType = bucketType
         self.startTime = startTime
         self.finishTime = finishTime
+        self.databaseName = "TaskBucket_Data.db"
 
     def setID(self, bucketID): self.bucketID = bucketID
     
     def setColour(self, colourAsRgb): self.colour = colourAsRgb
 
-    def AddBucketToDB(self, connection = sqlite3.connect("TaskBucket_Data.db")):
+    def AddBucketToDB(self, connection = sqlite3.connect(databaseName)):
         cursor = connection.cursor()
         cursor.execute(f"""
         INSERT INTO Buckets (bucketType, startTime, finishTime, bucketColour)
@@ -70,17 +72,19 @@ class TaskBucket:
     sessionTimeStart = float("nan")
     sessionTimeEnd = float("nan")
     epochWeek = 0
+    databaseName = ""
 
     def __init__(self, task, bucket, sessionTimeStart, sessionTimeEnd):
         self.task = task
         self.bucket = bucket
         self.sessionTimeStart = sessionTimeStart
         self.sessionTimeEnd = sessionTimeEnd
+        self.databaseName = "TaskBucket_Data.db"
 
     def setEpochWeek(self, epochWeek): self.epochWeek = epochWeek
 
 
-    def AddTaskBucketToDB(self, connection = sqlite3.connect("TaskBucket_Data.db")):
+    def AddTaskBucketToDB(self, connection = sqlite3.connect(databaseName)):
         print("addTaskBUcketToDBCalled")
         cursor = connection.cursor()
 
